@@ -1,0 +1,81 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* html{
+	overflow-x: hidden;
+	overflow-y: hidden;
+	height:100%
+} */
+
+body {
+	background-color: grey;
+}
+
+.navbar {
+	height: 8vh;
+	/* border: green solid; */
+	background-color: white;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+/* .navbar .logo {
+} */
+
+.items {
+	/* border: green solid; */
+	width: 90vw;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.categories {
+	/* width: 60vw; */
+	/* border: palevioletred solid; */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.categories a {
+	/* border: purple solid; */
+	padding: 3px;
+	margin: 5px;
+	text-decoration: none;
+
+}
+
+.navObj {
+	/* border: gold solid; */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.navObj > * {
+	/* border: purple solid; */
+	margin: 0 10px 0 10px;
+	/* padding: 3px; */
+	font-size: 1.2rem;
+}
+
+.navObj div {
+	/* border: red solid; */
+	display: flex;
+	flex-flow: column nowrap;
+	/* justify-items: center; */
+	/* justify-content: center; */
+	align-items: center;
+}
+
+.navObj div p {
+	font-size: 0.8rem;
+}
