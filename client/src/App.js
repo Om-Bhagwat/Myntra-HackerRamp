@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+//Import statements
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
+
+//Components import
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
+
+  const [ token , setToken ] = useState("");
+  const [ authError , setAuthError] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <BrowserRouter>
+          <Switch>
+              { token !== "" && !authError ? (
+                <>
+                   {/* You are logged in */}
+                    <Route path = "/" exact>
+                        <Navbar token = { token } />
+                    </Route>  
+                </>
+              ):(
+                <>
+                    {/* You are logged out. */}
+                    <Route path = "/" exact>
+                        <Navbar token = { token }/>
+                    </Route> 
+                </>
+              )}
+          </Switch>
+        </BrowserRouter>
     </div>
   );
 }
