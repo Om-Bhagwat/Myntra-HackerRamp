@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 //Imports
 import React from "react";
 import { FaShoppingBag, FaUserAlt, FaHeart, FaSearch } from "react-icons/fa";
-import companyLogo from "../../img/myntraLogo.png";
+import CompanyLogo from "../../img/myntraLogo.png";
 //css imports
 import './Navbar.css';
 
@@ -21,7 +22,7 @@ function Navbar(props){
                 <>
                     <div className="navbar">
                         <div className="logo">
-                            <img src={companyLogo} alt="MLogo" />
+                            <img src={CompanyLogo} alt="MLogo" />
                         </div>
                         <div className="items">
                             <div className="categories">
