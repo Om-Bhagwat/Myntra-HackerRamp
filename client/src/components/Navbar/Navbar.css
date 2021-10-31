@@ -11,17 +11,20 @@
 } */
 
 body {
-	background-color: grey;
+	background-color: rgb(254,254,254);
 }
 
 .navbar {
-	height: 12vh;
+	height: 10.5vh;
 	/* border: green solid; */
 	background-color: white;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-evenly;
 	align-items: center;
+	-webkit-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	-moz-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
 }
 
 /* .navbar .logo {

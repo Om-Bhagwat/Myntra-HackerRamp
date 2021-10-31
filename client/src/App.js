@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 //Components import
 import Navbar from './components/Navbar/Navbar';
+import Advertisement from "./components/Advertisement/Advertisement";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
                    {/* You are logged in */}
                     <Route path = "/" exact>
                         <Navbar token = { token } />
+                        <Advertisement />
                     </Route>  
                 </>
               ):(
@@ -26,6 +28,7 @@ function App() {
                     {/* You are logged out. */}
                     <Route path = "/" exact>
                         <Navbar token = { token }/>
+                        <Advertisement />
                     </Route> 
                 </>
               )}
