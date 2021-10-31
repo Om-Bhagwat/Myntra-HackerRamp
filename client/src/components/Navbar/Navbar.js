@@ -1,6 +1,12 @@
 //Imports
 import React from "react";
-import { FaShoppingBag, FaUserAlt, FaHeart, FaSearch } from "react-icons/fa";
+import {
+    FaShoppingBag,
+    FaUserAlt,
+    FaHeart,
+    FaSearch,
+    FaUserFriends
+} from "react-icons/fa";
 import companyLogo from "../../img/myntraLogo.png";
 //css imports
 import './Navbar.css';
@@ -78,6 +84,10 @@ function Navbar(props){
                                     <FaShoppingBag />
                                     <p>Bag</p>
                                 </a>
+                                <a>
+                                    <FaUserFriends />
+                                    <p>Bag</p>
+                                </a>    
                             </div>
                         </div>
                     </div>
