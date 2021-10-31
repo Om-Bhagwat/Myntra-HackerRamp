@@ -1,7 +1,7 @@
 //Imports
 import React from "react";
 import { FaShoppingBag, FaUserAlt, FaHeart, FaSearch } from "react-icons/fa";
-import logoImport from "../../img/myntraLogo.png";
+import companyLogo from "../../img/myntraLogo.png";
 //css imports
 import './Navbar.css';
 
@@ -19,11 +19,9 @@ function Navbar(props){
                 </>
             ) : (
                 <>
-                    This is Navbar. You are logged out.
-                    <br />
                     <div className="navbar">
                         <div className="logo">
-                            <img href={logoImport} alt="MLogo" />
+                            <img src={companyLogo} alt="MLogo" />
                         </div>
                         <div className="items">
                             <div className="categories">
@@ -32,47 +30,54 @@ function Navbar(props){
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Men
+                                    MEN
                                 </a>
                                 <a
                                     href="http://"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Women
+                                    WOMEN
                                 </a>
                                 <a
                                     href="http://"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Kids
+                                    KIDS
                                 </a>
                                 <a
                                     href="http://"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Home&nbsp;&&nbsp;Beauty
+                                    HOME&nbsp;&&nbsp;LIVING
+                                </a>
+                                <a
+                                    href="http://"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    BEAUTY
                                 </a>
                             </div>
                             <div className="navObj">
-                                <div>
+                                <a>
                                     <FaSearch />
                                     <p>Search</p>
-                                </div>
-                                <div>
+                                </a>
+                                <a>
                                     <FaUserAlt />
                                     <p>Profile</p>
-                                </div>
-                                <div>
+                                </a>
+                                <a>
                                     <FaHeart />
                                     <p>Wishlist</p>
-                                </div>
-                                <div>
+                                </a>
+                                <a>
                                     <FaShoppingBag />
                                     <p>Bag</p>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
