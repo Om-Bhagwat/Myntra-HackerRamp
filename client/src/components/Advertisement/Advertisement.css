@@ -1,22 +1,24 @@
-.short_pic{
-    margin-top:5rem;
-    margin-left:20px;
-    margin-right:20px;
+.SaleisLive {
+    text-align: center;
 }
 
-.long_pic{
-    margin-top: 2rem;
-    margin-left:10px;
-    margin-right:10px;
+.SaleisLive img{
+    /* border: rebeccapurple solid; */
+    width: 90vw;
 }
 
-.SaleisLive{
+.long_pic div {
+    text-align: center;
+}
+
+.Hdfc img{
+    /* border: rebeccapurple solid; */
+    width: 98vw;
     
 }
-.Hdfc{
-       
-}
 
-.Buy1Get1{
+.Buy1Get1 img{
+    /* border: rebeccapurple solid; */
+    width: 98vw;
 
 }
