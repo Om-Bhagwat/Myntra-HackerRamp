@@ -93,7 +93,7 @@ function Navbar(props){
                                 </a>
                                 <a>
                                     <FaUserFriends />
-                                    <p>Bag</p>
+                                    <p>Friends</p>
                                 </a>    
                             </div>
                         </div>
