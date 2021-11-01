@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 //Imports
 import React from "react";
+import {Link} from "react-router-dom";
 import {
     FaShoppingBag,
     FaUserAlt,
@@ -76,10 +77,12 @@ function Navbar(props){
                                     <FaSearch />
                                     <p>Search</p>
                                 </a>
-                                <a>
-                                    <FaUserAlt />
-                                    <p>Profile</p>
-                                </a>
+                                <Link to="/phone_number">
+                                    <a>
+                                        <FaUserAlt />
+                                        <p>Profile</p>
+                                    </a>
+                                </Link>
                                 <a>
                                     <FaHeart />
                                     <p>Wishlist</p>

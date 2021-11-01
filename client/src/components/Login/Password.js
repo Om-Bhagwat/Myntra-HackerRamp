@@ -1,5 +1,6 @@
 //react imports
 import React from "react";
+import {Link} from "react-router-dom";
 
 //css imports
 import "./Password.css";
@@ -21,8 +22,12 @@ function Password(props){
                 type="password"
                 required
             />
-            <button className="btn btn-primary" >Sign In</button>
-            <h4>Create Account</h4>
+            <Link to="/">
+                <button className="btn btn-primary" >Sign In</button>
+            </Link>
+            <Link to="/newAccount">
+                <h4>Create Account</h4>
+            </Link>
         </div>
     )
 }

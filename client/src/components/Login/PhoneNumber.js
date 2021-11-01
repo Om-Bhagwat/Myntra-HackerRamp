@@ -1,5 +1,6 @@
 //react imports
 import React from "react";
+import {Link} from "react-router-dom";
 
 //css imports
 import "../Login/PhoneNumber.css";
@@ -19,7 +20,9 @@ function PhoneNumber(props){
                 value={phone_number}
                 required
             />
-            <button className="btn btn-primary">Next</button>
+            <Link to="/password" >
+                <button className="btn btn-primary">Next</button>
+            </Link>
         </div>
     )
 }

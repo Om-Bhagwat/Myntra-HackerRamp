@@ -1,5 +1,6 @@
 //react imports
 import React from "react";
+import {Link} from "react-router-dom";
 
 //css imports
 import "./Register.css";
@@ -58,8 +59,12 @@ function Register(props){
                 value={alternateName}
                 type="string"
             />
-            <button className="btn btn-primary" >Create</button>
-            <p>Have an account?</p>
+            <Link to="/">
+                <button className="btn btn-primary" >Create</button>
+            </Link>
+            <Link to="/password">
+                <p>Have an account?</p>
+            </Link>
         </div>
     )
 }
