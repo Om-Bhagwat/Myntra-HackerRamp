@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 // import PhoneNumber from './components/Login/PhoneNumber';
-import PhoneNumber from './components/Register/Register';
+// import PhoneNumber from './components/Register/Register';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <PhoneNumber/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -2,6 +2,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+import Navbar from "../Navbar/Navbar";
+
 // icon imports
 import { FaMailBulk, FaGoogle, FaFacebook } from "react-icons/fa";
 
@@ -13,49 +15,54 @@ function Password(props){
     const {
         password,
         setPassword,
-        phone_number
+        phone_number,
+        token,
+        setToken
     } = props;
 
     return (
-        <div className="LoginBG">
-            <div className="box form">
-                <h3>Enter Account Password</h3>
-                <p>
-                    For additional security, please enter your account password
-                </p>
+        <>
+            <Navbar token = {token} />
+            <div className="LoginBG">
+                <div className="box form">
+                    <h3>Enter Account Password</h3>
+                    <p>
+                        For additional security, please enter your account password
+                    </p>
 
-                {/* todo: To set an onChange property */}
-                <input type="text" required placeholder="Password*" />
-                <Link to="/">
-                    <button className="loginBtn">LOGIN</button>
-                </Link>
-                <h6>
-                    Have Trouble Logging In ? <span>Get Help</span>
-                </h6>
+                    {/* todo: To set an onChange property */}
+                    <input type="text" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
+                    <Link to="/">
+                        <button className="loginBtn">LOGIN</button>
+                    </Link>
+                    <h6>
+                        Have Trouble Logging In ? <span>Get Help</span>
+                    </h6>
 
-                <p>Or Continue With</p>
+                    <p>Or Continue With</p>
 
-                <div className="options">
-                    <a>
-                        <FaMailBulk />
-                        <p>Email</p>
-                    </a>
-                    <a>
-                        <FaGoogle />
-                        <p>Google</p>
-                    </a>
-                    <a>
-                        <FaFacebook />
-                        <p>Facebook</p>
-                    </a>
+                    <div className="options">
+                        <a>
+                            <FaMailBulk />
+                            <p>Email</p>
+                        </a>
+                        <a>
+                            <FaGoogle />
+                            <p>Google</p>
+                        </a>
+                        <a>
+                            <FaFacebook />
+                            <p>Facebook</p>
+                        </a>
+                    </div>
+                    <Link to="/newAccount">
+                        <button className="newAccountBtn">
+                            CREATE&nbsp;NEW&nbsp;ACCOUNT
+                        </button>
+                    </Link>
                 </div>
-                <Link to="/newAccount">
-                    <button className="newAccountBtn">
-                        CREATE&nbsp;NEW&nbsp;ACCOUNT
-                    </button>
-                </Link>
             </div>
-        </div>
+        </>
     );
 }
 

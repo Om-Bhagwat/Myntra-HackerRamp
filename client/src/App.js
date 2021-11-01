@@ -44,12 +44,16 @@ function App() {
                     <Route path = "/phone_number" exact>
                         <PhoneNumber phone_number={phone_number} 
                                      setPhone_Number={setPhone_Number} 
+                                     token = {token}
+                                     setToken = {setToken}
                         />
                     </Route>
                     <Route path = "/password" exact>
                         <Password password = { password } 
                                   setPassword = {setPassword}
                                   phone_number = {phone_number}
+                                  token = {token}
+                                  setToken = {setToken}
                         />
                     </Route> 
                     <Route path="/newAccount" exact>
@@ -66,6 +70,8 @@ function App() {
                                   setAlternatePhone = {setAlternatePhone}
                                   alternateName = {alternateName}
                                   setAlternateName = {setAlternateName}
+                                  token = {token}
+                                  setToken = {setToken}
                         />
                     </Route>
                 </>
