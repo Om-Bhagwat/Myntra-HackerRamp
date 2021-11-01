@@ -1,7 +1,9 @@
 .LoginBG {
 	background-color: #FDEEF1;
-	height: 90vh;
+	height:90vh;
 	width: 100vw;
+	overflow-y: scroll;
+	/* overflow-x: scroll; */
 	/* border: firebrick solid 1px; */
 	position: relative;
 }

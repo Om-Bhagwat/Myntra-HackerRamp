@@ -29,7 +29,6 @@ function Navbar(props){
                     This is Navbar. You are logged in.
                 </>
             ) : (
-                <>
                     <div className="navbar">
                         <div className="logo">
                             <img src={CompanyLogo} alt="MLogo" />
@@ -98,7 +97,6 @@ function Navbar(props){
                             </div>
                         </div>
                     </div>
-                </>
             )}
         </div>
     );

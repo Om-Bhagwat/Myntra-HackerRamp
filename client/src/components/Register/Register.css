@@ -1,5 +1,3 @@
-
-
 .phoneDiv {
 	/* border: firebrick solid; */
 	display: flex;
@@ -53,21 +51,26 @@
 /* _______ Select Gender ________ */
 
 .selectGender {
+	/* border: darkblue solid 1px; */
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	margin: 20px 0 0 0;
+	padding: 0;
 }
 
 .selectGender h6 {
+	/* border: darkblue solid 1px; */
+	margin: 0;
 	color: grey;
 	font-size: 1.5rem;
 	font-weight: 400;
 }
 
 .genderOption {
+	/* border: darkblue solid 1px; */
 	margin: 0 10px 0 20px;
-	/* border: darkblue solid; */
+	/* padding: 0; */
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
@@ -86,13 +89,11 @@
 
 .genderOption label {
 	font-weight: 400;
+	padding: 0;
+	margin: 0;
 }
 
-/* ________________ */
-
-
-
-/* ________________ */
+/* ________ Button ________ */
 
 .createAccountBtn {
 	width: 328px;
