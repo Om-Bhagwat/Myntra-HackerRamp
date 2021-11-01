@@ -51,7 +51,7 @@ function Register(props){
             <Navbar token={token} />
             <div className="LoginBG">
                 <div className="box form">
-                    <h3>Complete Your Sign Up</h3>
+                    <h3 className="title">Complete Your Sign Up</h3>
 
                     <div className="phoneDiv">
                         <div className="phoneDiv2">
@@ -79,7 +79,7 @@ function Register(props){
                     value={email} type="email" placeholder="Email (Optional)"/>
 
                     <div className="selectGender">
-                        <h6>Select Gender:</h6>
+                        <h6>Select Gender :</h6>
                         <div className="genderOption">
                             <input type="radio" checked={gender==='Female'} id="Female" name="gender" value="Female" onClick={()=>setGender('Female')}/>
                             <label for="Female">Female</label>

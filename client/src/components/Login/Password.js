@@ -41,17 +41,16 @@ function Password(props){
             <Navbar token = {token} />
             <div className="LoginBG">
                 <div className="box form">
-                    <h3>Enter Account Password</h3>
+                    <h3 className="title">Enter Account Password</h3>
                     <p>
                         For additional security, please enter your account password
                     </p>
 
-                    {/* todo: To set an onChange property */}
                     <input type="text" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
                     <Link to="/">
                         <button  className="loginBtn">LOGIN</button>
                     </Link>
-                    <h6>
+                    <h6 className="moreInfo">
                         Have Trouble Logging In ? <span>Get Help</span>
                     </h6>
 

@@ -51,9 +51,9 @@ function App() {
                     </Route> 
                     <Route path = "/phone_number" exact>
                         <PhoneNumber phone_number={phone_number} 
-                                     setPhone_Number={setPhone_Number} 
-                                     token = {token}
-                                     setToken = {setToken}
+                                    setPhone_Number={setPhone_Number} 
+                                    token = {token}
+                                    setToken = {setToken}
                         />
                     </Route>
                     <Route path = "/password" exact>
