@@ -22,6 +22,11 @@ function App() {
   const [ alternatephone , setAlternatePhone ] = useState();
   const [ alternateName , setAlternateName ] = useState("");
 
+  function onLogout(){
+    localStorage.removeItem("token");
+    setToken("");
+  }
+
   return (
     <div>
         <BrowserRouter>

@@ -30,6 +30,22 @@ function Register(props){
         setToken
     } = props;
 
+    // const signUp = async(e)=>{
+    //     e.preventDefault();
+
+    //     try{
+    //         const response = await axios.post(
+    //             "URL",
+    //             {
+    //                 data
+    //             }
+    //         )
+    //         setToken();
+    //     }catch(error){
+    //         console.log(error);
+    //     }
+    // }
+
     return (
         <>
             <Navbar token={token} />

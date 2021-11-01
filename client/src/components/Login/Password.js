@@ -20,6 +20,22 @@ function Password(props){
         setToken
     } = props;
 
+    //  const signIn =async(e)=>{
+    //      e.preventDefault();
+
+    //      try{
+    //          const response = await axios.post(
+    //              "URL",
+    //              {
+    //                  data
+    //              }
+    //          )
+    //             setToken();
+    //      }catch(error){
+    //          console.log(error);
+    //      }
+    //  }
+
     return (
         <>
             <Navbar token = {token} />
@@ -33,7 +49,7 @@ function Password(props){
                     {/* todo: To set an onChange property */}
                     <input type="text" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
                     <Link to="/">
-                        <button className="loginBtn">LOGIN</button>
+                        <button  className="loginBtn">LOGIN</button>
                     </Link>
                     <h6>
                         Have Trouble Logging In ? <span>Get Help</span>
