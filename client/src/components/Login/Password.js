@@ -1,6 +1,9 @@
 //react imports
 import React from "react";
 
+// icon imports
+import { FaMailBulk, FaGoogle, FaFacebook } from "react-icons/fa";
+
 //css imports
 import "./Password.css";
 
@@ -12,19 +15,46 @@ function Password(props){
         phone_number
     } = props;
 
-    return(
-        <div>
-            <h3>Hello {phone_number}</h3>
-            <input
-                onChange={(e)=>setPassword(e.target.value)}
-                value = {password}
-                type="password"
-                required
-            />
-            <button className="btn btn-primary" >Sign In</button>
-            <h4>Create Account</h4>
+    return (
+        <div className="LoginBG">
+            <div className="box form">
+                <h3>Enter Account Password</h3>
+                <p>
+                    For additional security, please enter your account password
+                </p>
+
+                {/* todo: To set an onChange property */}
+                <input type="text" required placeholder="Password*" />
+
+                <button className="loginBtn">LOGIN</button>
+
+                <h6>
+                    Have Trouble Logging In ? <span>Get Help</span>
+                </h6>
+
+                <p>Or Continue With</p>
+
+                <div className="options">
+                    <a>
+                        <FaMailBulk />
+                        <p>Email</p>
+                    </a>
+                    <a>
+                        <FaGoogle />
+                        <p>Google</p>
+                    </a>
+                    <a>
+                        <FaFacebook />
+                        <p>Facebook</p>
+                    </a>
+                </div>
+
+                <button className="newAccountBtn">
+                    CREATE&nbsp;NEW&nbsp;ACCOUNT
+                </button>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Password;
