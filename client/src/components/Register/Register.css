@@ -56,7 +56,13 @@
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
-	margin: 0;
+	margin: 20px 0 0 0;
+}
+
+.selectGender h6 {
+	color: grey;
+	font-size: 1.5rem;
+	font-weight: 400;
 }
 
 .genderOption {
@@ -78,9 +84,10 @@
 	/* background-color: green; */
 }
 
-.genderOption h6 {
-	font-size: 2rem;
+.genderOption label {
+	font-weight: 400;
 }
+
 /* ________________ */
 
 

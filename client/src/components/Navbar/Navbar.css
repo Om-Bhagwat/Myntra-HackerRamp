@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-	height: 10.5vh;
+	height: 10vh;
 	/* border: green solid; */
 	background-color: white;
 	display: flex;
@@ -25,6 +25,7 @@ body {
 	-webkit-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
 	-moz-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
 	box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	margin: 0;
 }
 
 /* .navbar .logo {
@@ -85,9 +86,11 @@ body {
 	/* justify-items: center; */
 	/* justify-content: center; */
 	align-items: center;
+	color: black;
+	font-size: 1.5rem;
 }
 
 .navObj a p {
-	font-size: 0.8rem;
+	font-size: 1rem;
 	font-weight: 600;
 }

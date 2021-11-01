@@ -26,18 +26,18 @@ function PhoneNumber(props){
                 <div className="box">
                     <img src={OfferImg} alt="Offer"/>
                     <div className="form">
-                        <h3>Login&nbsp;<span>or</span>&nbsp;SignUp</h3>
+                        <h3 className="title">Login&nbsp;<span>or</span>&nbsp;SignUp</h3>
                         <input type="number"
                             onChange={(e)=>setPhone_Number(e.target.value)}
                             value={phone_number} required
                             placeholder="+91  |  Mobile&nbsp;Number*" />
-                        <h5>
+                        <h5 className="moreInfo">
                             By Continuing, I agree too the <a href="https://www.myntra.com/termsofuse">Terms Of Use</a> & <a href="https://www.myntra.com/privacypolicy">Privacy Policy</a>
                         </h5>
                         <Link to="/password">
                             <button className="continueBtn">CONTINUE</button>
                         </Link>
-                        <h6>Having Trouble Logging In ? <span>Get Help</span></h6>
+                        <h6 className="moreInfo">Having Trouble Logging In ? <span>Get Help</span></h6>
                     </div>
                 </div>
             </div>
