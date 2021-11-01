@@ -1,0 +1,23 @@
+.products{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.oppa{
+    background-color: aliceblue;
+    margin:20px;
+    text-align: center;
+    height: 35rem;
+}
+
+.oppa img{
+    height: 23rem;
+    
+}
+
+.oppa div{
+    margin:13px;
+    text-align: left;
+}

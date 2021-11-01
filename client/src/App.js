@@ -8,6 +8,7 @@ import Advertisement from "./components/Advertisement/Advertisement";
 import PhoneNumber from "./components/Login/PhoneNumber";
 import Password from "./components/Login/Password";
 import Register from "./components/Register/Register";
+import Product from "./components/Product/Product";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
                     <Route path = "/" exact>
                         <Navbar token = { token } />
                         <Advertisement />
+                        <Product />
                     </Route>  
                 </>
               ):(
@@ -45,6 +47,7 @@ function App() {
                     <Route path = "/" exact>
                         <Navbar token = { token }/>
                         <Advertisement />
+                        <Product />
                     </Route> 
                     <Route path = "/phone_number" exact>
                         <PhoneNumber phone_number={phone_number} 
