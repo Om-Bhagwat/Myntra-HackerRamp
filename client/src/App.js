@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-globals */
 //Import statements
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 //Components import
@@ -9,6 +10,7 @@ import PhoneNumber from "./components/Login/PhoneNumber";
 import Password from "./components/Login/Password";
 import Register from "./components/Register/Register";
 import Product from "./components/Product/Product";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
 
@@ -23,6 +25,14 @@ function App() {
   const [ alternatephone , setAlternatePhone ] = useState();
   const [ alternateName , setAlternateName ] = useState("");
 
+
+  useEffect(()=>{
+    const localToken = localStorage.getItem("token");
+    if(localToken){
+      setToken(localToken);
+    }
+  },[])
+
   function onLogout(){
     localStorage.removeItem("token");
     setToken("");
@@ -32,20 +42,24 @@ function App() {
     <div>
         <BrowserRouter>
           <Switch>
-              { token !== "" && !authError ? (
+              { token !== ""  ? (
                 <>
                    {/* You are logged in */}
                     <Route path = "/" exact>
-                        <Navbar token = { token } />
+                        <Navbar token = { token } onLogout = {onLogout} />
                         <Advertisement />
                         <Product />
+                    </Route>
+                    <Route path="/profile" exact>
+                        <Navbar token = { token } onLogout = {onLogout}/>
+                        <UserProfile />
                     </Route>  
                 </>
               ):(
                 <>
                     {/* You are logged out. */}
                     <Route path = "/" exact>
-                        <Navbar token = { token }/>
+                        <Navbar token = { token } onLogout = {onLogout}/>
                         <Advertisement />
                         <Product />
                     </Route> 

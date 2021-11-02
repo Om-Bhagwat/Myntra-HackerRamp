@@ -1,6 +1,7 @@
 //react imports
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import axios from "axios";
 
 import Navbar from "../Navbar/Navbar";
 
@@ -20,21 +21,28 @@ function Password(props){
         setToken
     } = props;
 
-    //  const signIn =async(e)=>{
-    //      e.preventDefault();
 
-    //      try{
-    //          const response = await axios.post(
-    //              "URL",
-    //              {
-    //                  data
-    //              }
-    //          )
-    //             setToken();
-    //      }catch(error){
-    //          console.log(error);
-    //      }
-    //  }
+    let history = useHistory();
+
+     const signIn =async(e)=>{
+         e.preventDefault();
+
+         try{
+             const response = await axios.post(
+                 "http://localhost:3003/api/user/login2",
+                 {
+                     phone_no : phone_number,
+                     password : password,
+                 }
+             )
+                console.log(response);
+                localStorage.setItem("token",response.data.token);
+                setToken(response.data.token);
+                history.push("/");
+         }catch(error){
+             console.log(error);
+         }
+     }
 
     return (
         <>
@@ -47,9 +55,7 @@ function Password(props){
                     </p>
 
                     <input type="text" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
-                    <Link to="/">
-                        <button  className="loginBtn">LOGIN</button>
-                    </Link>
+                    <button onClick={signIn} className="loginBtn">LOGIN</button>
                     <h6 className="moreInfo">
                         Have Trouble Logging In ? <span>Get Help</span>
                     </h6>
