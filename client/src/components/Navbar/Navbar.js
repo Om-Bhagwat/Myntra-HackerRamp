@@ -27,7 +27,9 @@ function Navbar(props){
     return (
         <div className="navbar">
             <div className="logo">
-                <img src={CompanyLogo} alt="MLogo" />
+                <Link to={"/"}>
+                    <img src={CompanyLogo} alt="MLogo" />
+                </Link>
             </div>
             <div className="items">
                 <div className="categories">
@@ -71,9 +73,18 @@ function Navbar(props){
                             <p>Friends</p>
                         </Link>
                     ) : (
+                        <Link to="/friends">
+                            {/* <h3>{token}</h3> */}
+                            <FaUserFriends />
+                            <p>Friends</p>
+                        </Link>
+                    )}
+                    {token === "" ? (
+                        ""
+                    ) : (
                         <a onClick={onLogout}>
                             <FaSignOutAlt />
-                            <p>Friends</p>
+                            <p>Log&nbsp;Out</p>
                         </a>
                     )}
                 </div>
