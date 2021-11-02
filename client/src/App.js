@@ -1,6 +1,7 @@
+/* eslint-disable no-restricted-globals */
 //Import statements
 import React, { useState } from "react";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 
 //Components import
 import Navbar from './components/Navbar/Navbar';
@@ -23,9 +24,12 @@ function App() {
   const [ alternatephone , setAlternatePhone ] = useState();
   const [ alternateName , setAlternateName ] = useState("");
 
+  let history = useHistory();
+
   function onLogout(){
     localStorage.removeItem("token");
     setToken("");
+    //history.push("/");
   }
 
   return (

@@ -1,6 +1,6 @@
 //react imports
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../Navbar/Navbar";
@@ -21,6 +21,9 @@ function Password(props){
         setToken
     } = props;
 
+
+    let history = useHistory();
+
      const signIn =async(e)=>{
          e.preventDefault();
 
@@ -35,6 +38,7 @@ function Password(props){
                 console.log(response);
                 localStorage.setItem("token",response.data.token);
                 setToken(response.data.token);
+                history.push("/");
          }catch(error){
              console.log(error);
          }

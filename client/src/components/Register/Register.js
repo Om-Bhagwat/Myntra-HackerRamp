@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals */
+
 //react imports
 import React from "react";
 import {Link, useHistory} from "react-router-dom";
@@ -31,6 +31,8 @@ function Register(props){
         token,
         setToken
     } = props;
+
+    let history = useHistory();
 
     const signUp = async(e)=>{
         e.preventDefault();

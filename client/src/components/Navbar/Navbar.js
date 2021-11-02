@@ -23,6 +23,7 @@ function Navbar(props){
         token,
         onLogout
     } = props;
+
     return (
         <div className="navbar">
             <div className="logo">
@@ -63,17 +64,17 @@ function Navbar(props){
                         <FaShoppingBag />
                         <p>Bag</p>
                     </Link>
-                    {token !== "" ? (
+                    {token === "" ? (
                         <Link to="/phone_number">
                             {/* <h3>{token}</h3> */}
-                            <FaSignOutAlt />
-                            <p>Friends</p>
-                        </Link>
-                    ) : (
-                        <Link to="/phone_number">
                             <FaUserFriends />
                             <p>Friends</p>
                         </Link>
+                    ) : (
+                        <a onClick={onLogout}>
+                            <FaSignOutAlt />
+                            <p>Friends</p>
+                        </a>
                     )}
                 </div>
             </div>
