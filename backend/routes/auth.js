@@ -136,14 +136,14 @@ router.post("/login2", async (req, res) => {
   if (!user)
       return res
           .status(400)
-          .send({ error: "Phn or Password is incorrect." });
+          .send({ error: "Phone number or Password is incorrect." });
 
   //hash
   const ValidPass = await bcrypt.compare(req.body.password, user.password);
   if (!ValidPass)
       return res
           .status(400)
-          .send({ error: "Email or Password is incorrect." });
+          .send({ error: "Phone number or Password is incorrect." });
 
   // token
   const token = jwt.sign({

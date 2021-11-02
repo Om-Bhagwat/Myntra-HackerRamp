@@ -52,10 +52,17 @@ function Navbar(props){
                         <FaSearch />
                         <p>Search</p>
                     </a>
-                    <Link to="/phone_number">
-                        <FaUserAlt />
-                        <p>Profile</p>
-                    </Link>
+                    {token === "" ? (
+                        <Link to="/phone_number">
+                            <FaUserAlt />
+                            <p>Profile</p>
+                        </Link>
+                    ) : (
+                        <Link to="/profile">
+                            <FaUserAlt />
+                            <p>Profile</p>
+                        </Link>
+                    )}
                     <Link to="/phone_number">
                         <FaHeart />
                         <p>Wishlist</p>

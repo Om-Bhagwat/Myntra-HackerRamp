@@ -1,0 +1,74 @@
+
+.upper_div{
+    width:100vw;
+    height:0.5vh;
+}
+
+.middle_div{
+    width:auto;
+    height: auto;
+    margin-left : 100px;
+    margin-right:100px;
+    /* background-color: red; */
+}
+
+.Name{
+    margin-left:15px;
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .left_photo{
+    display: flex;
+    flex-direction: column;
+} */
+.photo_cont{
+    height: 100px;
+    width:100px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin-bottom: 10px;
+}
+
+
+.cont{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0%;
+}
+
+.left_div{
+    /* background-color: yellow; */
+    height:520px;
+    border-color: whitesmoke whitesmoke white white;
+    border-style:solid;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.right_div{
+    /* background-color: turquoise; */
+    height:520px;
+    border-color: whitesmoke white white white;
+    border-style: solid;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.inside_div{
+    /* background-color: violet; */
+    margin-top: 20px;
+    margin-left:5px;
+    margin-right: 5px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    border-color: whitesmoke;
+    border-style: solid;
+}
+
+.info_div{
+    /* background-color: red; */
+    height:100% ;
+    width:70%;
+
+}
