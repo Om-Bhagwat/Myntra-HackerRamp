@@ -4,6 +4,7 @@ const Blog = require('../models/Blog');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
+//const Product = require('../models/product');
 
 
 
@@ -82,6 +83,30 @@ const storage = multer.diskStorage({
       console.log(error);
     }
   });
+
+  // router.post('/addtowishlist', async (req, res) => {
+  //   console.log(req.body);
+  //   const user = await User.findOne({ phone_no: req.body.phone_no});
+  //   if (!user)
+  //       return res
+  //           .status(400)
+  //           .send({ error: "Phn no is incorrect." });
+          
+  
+  //   try {
+
+  //     user.wishlist.push(req.body.product_id)
+  //     const new_user = await user.save();
+  
+  //     res.status(201).send({ user })
+
+  //   //   return response.status(201)
+  
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
+  
 
 
 

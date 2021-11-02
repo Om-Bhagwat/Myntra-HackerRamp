@@ -75,6 +75,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'placeholder.jpg',
   },
+  // wishlist: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Product',
+  //   },
+  // ],
   slug: { type: String, slug: 'phone_no', unique: true, slug_padding_size: 2 }
 });
 
