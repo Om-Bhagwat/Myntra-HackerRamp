@@ -19,7 +19,8 @@ import './Navbar.css';
 function Navbar(props){
 
     const {
-        token
+        token,
+        onLogout
     } = props;
     return (
         <div>

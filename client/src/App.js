@@ -36,7 +36,7 @@ function App() {
                 <>
                    {/* You are logged in */}
                     <Route path = "/" exact>
-                        <Navbar token = { token } />
+                        <Navbar token = { token } onLogout = {onLogout} />
                         <Advertisement />
                         <Product />
                     </Route>  
@@ -45,7 +45,7 @@ function App() {
                 <>
                     {/* You are logged out. */}
                     <Route path = "/" exact>
-                        <Navbar token = { token }/>
+                        <Navbar token = { token } onLogout = {onLogout}/>
                         <Advertisement />
                         <Product />
                     </Route> 

@@ -1,6 +1,8 @@
+/* eslint-disable no-restricted-globals */
 //react imports
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import axios from "axios";
 
 import Navbar from "../Navbar/Navbar";
 
@@ -30,21 +32,30 @@ function Register(props){
         setToken
     } = props;
 
-    // const signUp = async(e)=>{
-    //     e.preventDefault();
+    const signUp = async(e)=>{
+        e.preventDefault();
 
-    //     try{
-    //         const response = await axios.post(
-    //             "URL",
-    //             {
-    //                 data
-    //             }
-    //         )
-    //         setToken();
-    //     }catch(error){
-    //         console.log(error);
-    //     }
-    // }
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/register2",
+                {
+                    name: name,
+                    email: email,
+                    phone_no:phone_number,
+                    gender:gender,
+                    alt_phone_no: alternatephone,
+                    hint_name: alternateName,
+                    password: password,
+                }
+            )
+            console.log(response);
+            localStorage.setItem("token",response.data.token);
+            setToken(response.data.token);
+            history.push("/");
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -98,9 +109,7 @@ function Register(props){
                     value={alternateName} type="string" placeholder="Hint Name (Alternate Number)"/>
                     <p>This name will be a hint for your alternate number</p>
                     
-                    <Link to="/">
-                        <button className="createAccountBtn">CREATE&nbsp;ACCOUNT</button>
-                    </Link>
+                    <button onClick={signUp}  className="createAccountBtn">CREATE&nbsp;ACCOUNT</button>
                 </div>
             </div>
         </>
