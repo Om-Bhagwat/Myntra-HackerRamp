@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Blog = require('../models/Blog');
+const Product=require('../models/Product');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
@@ -160,76 +161,67 @@ router.post("/login2", async (req, res) => {
 });
 
 
+// upload product details
+router.post("/productUpload", upload.single('image'), async (req, res) => {
+ 
+  const product = new Product({
+      p_id: req.body.p_id,
+      
+      p_name:req.body.p_name,
+      p_desc:req.body.p_desc,
+      p_size:req.body.p_size,
+      p_price:req.body.p_price,
+      
+  });
+  try {
 
-
-
-
-// router.post("/register", async (req, res) => {
-//   console.log(req.body);
-
-//   const emailExist = await User.findOne({ email: req.body.email });
-//   if (emailExist)
-//       return res
-//           .status(400)
-//           .send({ error: "Email already exists" });
-
-//   //hash
-//   const salt = await bcrypt.genSalt(10);
-//   const hashPass = await bcrypt.hash(req.body.password, salt);
-//   const user = new User({
-//       name: req.body.name,
-//       email: req.body.email,
-//       password: hashPass,
-//   });
-//   try {
-//       const savedUser = await user.save();
-//       const token = jwt.sign({
-//           _id: savedUser._id,
-//           exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
-//       }, process.env.TOKEN_SECRET);
+    await product.save();
+      product.img=req.file.filename
+      
+     
   
-//       return res
-//           .status(200)
-//           .header("auth-token", token)
-//           .send({ error: null, token: token });
-//   } catch (err) {
-//       console.log(err);
-//       return res
-//           .status(400)
-//           .send({ error: "Not available at the moment", success: "false" });
-//   }
-// });
-
-// router.post("/login", async (req, res) => {
-//   console.log(req.body);
+      return res
+          .status(200)
+          
+          .send({ product});
+  } catch (err) {
+      console.log(err);
+      return res
+          .status(400)
+          .send({ error: "Not available at the moment", success: "false" });
+  }
+});
 
 
-//   const user = await User.findOne({ email: req.body.email });
-//   if (!user)
-//       return res
-//           .status(400)
-//           .send({ error: "Email or Password is incorrect." });
+// get user
+router.post('/getuser', async (req, res) => {
 
-//   //hash
-//   const ValidPass = await bcrypt.compare(req.body.password, user.password);
-//   if (!ValidPass)
-//       return res
-//           .status(400)
-//           .send({ error: "Email or Password is incorrect." });
+  try {
+      const user1= await User.find({  phone_no: req.body.phone_no})
+      
 
-//   // token
-//   const token = jwt.sign({
-//       _id: user._id,
-//       exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
-//   }, process.env.TOKEN_SECRET);
-//   // }, "thisisyo");
+      res.send({ user1})
+  } catch (e) {
+      res.status(400).send()
+  }
+})
 
 
-//   return res
-//       .status(200)
-//       .header("auth-token", token)
-//       .send({ error: null, token: token });
-// });
+// get product
+router.post('/getproduct', async (req, res) => {
+
+  try {
+      const product1= await User.find({   p_id: req.body.p_id})
+      
+
+      res.send({ product1})
+  } catch (e) {
+      res.status(400).send()
+  }
+})
+
+
+
 
 
 
