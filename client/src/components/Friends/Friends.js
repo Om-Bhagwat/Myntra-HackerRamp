@@ -1,14 +1,14 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 
 import CompanyLogo from "../../img/myntraLogo.png";
 
 import "./Friends.css";
 
-const ratingChanged = (newRating) => {
-    console.log(newRating);
-};
+// const ratingChanged = (newRating) => {
+//     console.log(newRating);
+// };
 
 function Friends(){
 
