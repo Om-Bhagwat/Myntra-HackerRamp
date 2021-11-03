@@ -1,69 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Orienta&family=Roboto:wght@300;400;500&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
+/* ---- Left Div Friend List ---- */
 
 .Left_div_friends{
-    background-color: whitesmoke;
+    /* border: black solid 1px; */
+    background-color: #f7fbfc;
     height: 90vh;
-    overflow-y: auto;
+    /* border-right: rgb(206, 206, 206) solid 1px; */
+    box-shadow: 5px 0px 20px 0px rgb(212, 212, 212);
+    z-index: 1;
 }
 
 .Left_div_friends::-webkit-scrollbar {
     width: 1em;
-  }
+}
+
+.friend-list-head {
+    /* border: black solid 1px; */
+    text-align: center;
+    font-family: 'Prata', serif;
+    font-size: 2.3rem;
+    margin: 25px 0 15px 0;
+}
+
+.friend-list-body {
+    /* border: black solid 1px; */
+    margin: 5px 5px;
+    padding: 5px 16px;
+    overflow-y: scroll;
+    height: 35vh;
+    scrollbar-width: thin;
+}
+
+.friends_box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin:0 0 15px 0;
+}
+
+.friend-list-pic{
+    border-radius: 50%;
+    background-color: turquoise;
+    height:64px;
+    width:64px;
+}
+
+.info_tab{
+    margin-left: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(100, 100, 100);
+}
+
+.info_tab h6 {
+    font-size: 2.2rem;
+    margin: 8px 0;
+}
+
+.info_tab p {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* ---- Right Div Friend's Wishlist ---- */
 
 .right_div_friends{
     background-color: white;
     height: 90vh;
     overflow: auto;
+    padding: 0 10px;
+    scrollbar-width: thin;
+    /* position: relative; */
+    display: flex;
+    flex-flow: column nowrap;
+    /* todo ----------------------------- */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* align-content: center; */
 }
+
 .right_div_friends::-webkit-scrollbar {
     width: 1em;
-  }
-.friends_box{
-    display: flex;
-    flex-direction: row;
-    margin-top:15px;
-    margin-bottom:15px;
-}
-
-.circle_pic{
-    border-radius: 50%;
-    background-color: turquoise;
-    height:80px;
-    width:80px;
-}
-
-.info_tab{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 25px;
 }
 
 .search_Bar{
-    display: flex;
-    justify-content: center;
-    margin-top:30px;
+    text-align: center;
+    /* to make searchbar float */
+    /* position: fixed;
+    left: 73%;
+    top: 5%;
+    translate: -73% -5%; */
+    margin:30px 15px 0 15px;
 }
 
 .search_input{
     height: 50px;
     width:40vw;
-    border-radius: 10px;
+    min-width: 300px;
+    border-radius: 15px;
     box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
     -webkit-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
     -moz-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
     border-style: none;
+    padding: 5px 20px;
+    overflow: hidden;
 }
+
+.search_input:focus {
+    border: #ff3f6c solid 1px !important;
+    outline: none;
+}
+
 
 .WishlistNames{
     display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
     justify-content: center;
-    margin-top: 30px;
-}
-.outer_wish{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    margin: 30px 15px 0 15px;
 }
 
 .circle_img{
@@ -71,37 +131,91 @@
     width:100px;
     border-radius: 50%;
     background-color: wheat;
-    margin-top:12px;
+    margin-top:0;
 }
 
 .in{
     display: flex;
-    flex-direction: column;
-    margin-left:20px;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin:0 20px;
+}
+
+.in h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin: 5px 10px;
+    text-align: center;
+}
+
+.bt {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .bt button{
     border-radius: 10px;
     margin:10px;
+    padding: 5px 15px;
+    color: white;
+    font-weight: 600;
+    background-color: #ff3f6c;
+    border: none;
+    height: 35px;
 }
 
-.ptag{
+.bt button:active {
+    background-color: #d11f49;
+}
+
+.bt button:hover {
+    box-shadow: 0 0 12px 1px rgb(206, 206, 206);
+}
+
+/* .line {
+    height: 1px;
+    border-top: black solid 1px;
+} */
+
+.help-dialogue {
+    margin: 16px 15px 10px 15px;
     text-align: center;
+    /* border: #d11f49 solid 1px; */
+    font-size: 1.5rem;
+    color: #ff3f6c;
+    font-family: 'Orienta', sans-serif;
 }
 
-.friends_wishlist{
+.friend_wishlist{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 0 15px;
 }
 
 .wishlist_card{
-    height: 220px;
-    width:370px;
-    background-color: whitesmoke;
+    height: 200px;
+    width:320px;
     margin:20px;
+    background-color: #f7fbfc;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    border-radius: 10px;
+}
+
+.wishlist_card:hover {
+    box-shadow: 0 0 20px 1px rgb(206, 206, 206);
+}
+
+.card_left{
+    width:45%;
+    height: 100%;
+    background-color: thistle;
+    border-radius: 10px;
 }
 
 .prod_im{
@@ -109,19 +223,30 @@
     width:100%;
 }
 
-.card_left{
-    width:50%;
-    height: auto;
-    background-color: thistle;
-}
-
 .card_right{
     width:50%;
-    height: auto;
+    height: 100%;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-}
-.card_right div{
-    margin:10px;
+    flex-flow: column nowrap;
+    /* align-content: space-between; */
+    justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
 }
 
+.card_right .card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+}
+
+.card_right .card-brand {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin: 0 0 5px 0;
+}
+
+.card-right .card-cost {
+    margin: 10px 0 0 0;
+    font-size: 1.5rem;
+}

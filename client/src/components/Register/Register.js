@@ -31,10 +31,9 @@ function Register(props){
         token,
         setToken
     } = props;
-
     let history = useHistory();
 
-    const signUp = async(e)=>{
+    const signUp = async(e) => {
         e.preventDefault();
 
         try{
