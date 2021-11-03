@@ -1,0 +1,127 @@
+
+
+.Left_div_friends{
+    background-color: whitesmoke;
+    height: 90vh;
+    overflow-y: auto;
+}
+
+.Left_div_friends::-webkit-scrollbar {
+    width: 1em;
+  }
+
+.right_div_friends{
+    background-color: white;
+    height: 90vh;
+    overflow: auto;
+}
+.right_div_friends::-webkit-scrollbar {
+    width: 1em;
+  }
+.friends_box{
+    display: flex;
+    flex-direction: row;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.circle_pic{
+    border-radius: 50%;
+    background-color: turquoise;
+    height:80px;
+    width:80px;
+}
+
+.info_tab{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25px;
+}
+
+.search_Bar{
+    display: flex;
+    justify-content: center;
+    margin-top:30px;
+}
+
+.search_input{
+    height: 50px;
+    width:40vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    -moz-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    border-style: none;
+}
+
+.WishlistNames{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.outer_wish{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.circle_img{
+    height: 100px;
+    width:100px;
+    border-radius: 50%;
+    background-color: wheat;
+    margin-top:12px;
+}
+
+.in{
+    display: flex;
+    flex-direction: column;
+    margin-left:20px;
+}
+
+.bt button{
+    border-radius: 10px;
+    margin:10px;
+}
+
+.ptag{
+    text-align: center;
+}
+
+.friends_wishlist{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.wishlist_card{
+    height: 220px;
+    width:370px;
+    background-color: whitesmoke;
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.prod_im{
+    height: 100%;
+    width:100%;
+}
+
+.card_left{
+    width:50%;
+    height: auto;
+    background-color: thistle;
+}
+
+.card_right{
+    width:50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.card_right div{
+    margin:10px;
+}
+
