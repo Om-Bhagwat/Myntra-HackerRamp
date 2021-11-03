@@ -207,6 +207,26 @@ router.post('/getuser', async (req, res) => {
 })
 
 
+router.post('/getnames', async (req, res) => {
+
+  try {
+
+      const searchfield= req.body.name
+      User.find({name:{$regex:searchfield,$options:'$i'}}).then(
+        data=>{
+          res.send(data);
+        }
+      )
+      
+      
+
+  
+  } catch (e) {
+      res.status(400).send()
+  }
+})
+
+
 // get product
 router.post('/getproduct', async (req, res) => {
 
