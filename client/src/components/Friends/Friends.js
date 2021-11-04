@@ -1,11 +1,34 @@
-import React from "react";
+import React , {useState} from "react";
 import ReactStars from "react-rating-stars-component";
+import axios from "axios";
+// import { render } from "react-dom";
 
 import CompanyLogo from "../../img/myntraLogo.png";
 
 import "./Friends.css";
 
 function Friends(){
+
+    const [search , setSearch] = useState("");
+    const [show , setShow ] = useState(false);
+
+    const search_function =async(e)=>{
+        e.preventDefault();
+
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/getnames",
+                {
+                    name : search,
+                }
+            )
+
+            console.log(response);
+            setShow(true);
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return (
         <div className="container-fluid">
@@ -103,12 +126,43 @@ function Friends(){
             </div>
 
             <div className="col-xs-9 col-md-9 right_div_friends">
-                <div className="borderDiv">
-                    <div className="search_Bar">
-                        <input
-                            className="search_input"
-                            placeholder="Search Friends"
-                        />
+                <div className="search_Bar">
+                    <input
+                        className="search_input"
+                        placeholder="Search Friends"
+                        value = {search}
+                        onChange={(e)=>setSearch(e.target.value)}
+                    />
+                    <button onClick={search_function} >Search</button>
+                </div>
+                {show ? (
+                    <div className="search_results">
+                        <div className="results">
+                            <div className="profile_car">
+                                <div className="oir">
+                                    {/* Photo */}
+                                    <div className="cir"></div>
+                                    <div>Om Bhagwat</div>
+                                </div>
+                                <div>
+                                    {/* icon */}
+                                    <h5>Accept</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ):(
+                    <>
+                    </>
+                )}
+                <div className="WishlistNames">
+                    <div className="circle_img"></div>
+                    <div className="in">
+                        <h3>Parth Bhardwaj's Wishlist</h3>
+                        <div className="bt">
+                            <button>Remove Friend</button>
+                            <button>Block Friend</button>
+                        </div>
                     </div>
                     <div className="WishlistNames">
                         <div className="circle_img"></div>

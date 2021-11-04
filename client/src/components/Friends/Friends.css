@@ -109,6 +109,38 @@
     margin:30px 15px 0 15px;
 }
 
+.search_results{
+    margin:30px 15px 0 15px;
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+}
+
+.results{
+    height:500px;
+    width:40vw;
+    z-index: 5%;
+    background-color:aqua;
+}
+
+.profile_car{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.oir{
+    display: flex;
+    flex-direction: row;
+}
+
+.cir{
+    height:80px;
+    width:80px;
+    border-radius: 50%;
+    background-color: blue;
+}
+
 .search_input{
     height: 50px;
     width:40vw;
