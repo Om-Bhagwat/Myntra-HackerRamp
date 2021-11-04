@@ -85,6 +85,7 @@ router.post('/upload2', upload.single('image'), async (req, res) => {
   }
 });
 
+
 router.post('/addtowishlist', async (req, res) => {
   console.log(req.body);
   const user = await User.findOne({ phone_no: req.body.phone_no });
