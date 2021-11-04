@@ -101,44 +101,10 @@
 
 .search_Bar{
     text-align: center;
-    /* to make searchbar float */
-    /* position: fixed;
-    left: 73%;
-    top: 5%;
-    translate: -73% -5%; */
-    margin:30px 15px 0 15px;
-}
-
-.search_results{
-    margin:30px 15px 0 15px;
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
-    background-color: blue;
-}
-
-.results{
-    height:500px;
-    width:40vw;
-    z-index: 5%;
-    background-color:aqua;
-}
-
-.profile_car{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.oir{
-    display: flex;
-    flex-direction: row;
-}
-
-.cir{
-    height:80px;
-    width:80px;
-    border-radius: 50%;
-    background-color: blue;
+    margin:30px 15px 0 15px;
 }
 
 .search_input{
@@ -159,6 +125,123 @@
     outline: none;
 }
 
+.search-btn {
+    margin-left: 10px;
+    height: 50px;
+    width:50px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    -moz-box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    border-style: none;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f7fbfc;
+    overflow: hidden;
+}
+
+.search-btn:active {
+    background-color: #d9e1e4;
+}
+
+/* ! ---- Search Results shown here ---- ! */
+
+.search_results{
+    height: auto;
+    /* border: black solid 1px; */
+    margin:0px 15px 0 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.results{
+    position: fixed;
+    top: 26vh;
+    translate: -55% 0%;
+    background-color: white;
+    border-radius: 15px;
+    /* border-top-left-radius: 0;
+    border-top-right-radius: 0; */
+    box-shadow: 3px 3px 10px 3px rgba(221,221,221,0.75);
+    /* border: black solid 1px; */
+    height:50vh;
+    width: calc(40% + 60px);
+    min-width: 300px;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.profile_car{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.oir {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.p-pic{
+    height:46px;
+    width:46px;
+    border-radius: 50%;
+    background-color: rgb(151, 151, 241);
+}
+
+.p-name {
+    font-family: 'Roboto';
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.send-request {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px 0px 5px;
+}
+
+.send-request .send-btn {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: #ff3f6c;
+    padding: 4px 15px 4px 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.send-request .send-btn:hover {
+    background-color: #d11f49;
+}
+
+.send-request .send-btn:active {
+    background-color: #ff3f6c;
+}
+
+.send-btn div {
+    margin: 0;
+    padding: 0px 10px;
+}
+
+.send-request h5 {
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ---- Opened Profile Details ---- */
 
 .WishlistNames{
     display: flex;

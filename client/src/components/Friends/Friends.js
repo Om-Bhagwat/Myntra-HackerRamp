@@ -5,6 +5,8 @@ import axios from "axios";
 
 import CompanyLogo from "../../img/myntraLogo.png";
 
+import { FaUserPlus, FaSearch } from "react-icons/fa";
+
 import "./Friends.css";
 
 function Friends(){
@@ -133,20 +135,128 @@ function Friends(){
                         value = {search}
                         onChange={(e)=>setSearch(e.target.value)}
                     />
-                    <button onClick={search_function} >Search</button>
+                    <FaSearch className="search-btn" onClick={search_function}/>
                 </div>
                 {show && search!=="" ? (
                     <div className="search_results">
-                        <div className="results">
-                            <div className="profile_car">
+                        <div className="results"> {/* profile list */}
+                            <div className="profile_car"> {/* profiles */}
                                 <div className="oir">
-                                    {/* Photo */}
-                                    <div className="cir"></div>
-                                    <div>Om Bhagwat</div>
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
                                 </div>
-                                <div>
-                                    {/* icon */}
-                                    <h5>Send</h5>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile_car"> {/* profiles */}
+                                <div className="oir">
+                                    <div className="p-pic"></div>
+                                    <div className="p-name">Om Bhagwat</div>
+                                </div>
+                                {
+                                    // ? Note: write onClick function in send-request class
+                                }
+                                <div className="send-request">
+                                    <div className="send-btn">
+                                        <div>
+                                            <FaUserPlus/>
+                                        </div>
+                                        <h5>Send</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,269 +274,259 @@ function Friends(){
                             <button>Block Friend</button>
                         </div>
                     </div>
-                    <div className="WishlistNames">
-                        <div className="circle_img"></div>
-                        <div className="in">
-                            <h3>Parth Bhardwaj's Wishlist</h3>
-                            <div className="bt">
-                                <button>Remove Friend</button>
-                                <button>Block Friend</button>
-                            </div>
-                        </div>
-                    </div>
-                    {/* <hr className="line"/> */}
-                    <div className="help-dialogue">
-                        <h4>
-                            Help your friend choose better by rating items in
-                            their wishlist
-                        </h4>
-                    </div>
+                </div>
+                {/* <hr className="line"/> */}
+                <div className="help-dialogue">
+                    <h4>
+                        Help your friend choose better by rating items in
+                        their wishlist
+                    </h4>
+                </div>
 
-                    <div className="friend_wishlist">
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                <div className="friend_wishlist">
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
                         </div>
-                        <div className="wishlist_card">
-                            <div className="card_left">
-                                <img
-                                    className="prod_im"
-                                    src={CompanyLogo}
-                                    alt="product_image"
-                                />
-                            </div>
-                            <div className="card_right">
-                                <h5 className="card-title">Men Black JORDAN</h5>
-                                <h5 className="card-brand">ONE TAKE 2</h5>
-                                <h6
-                                    className="card-cost"
-                                    style={{
-                                        margin: "10px 0 0 0",
-                                        fontSize: "1.5rem",
-                                    }}
-                                >
-                                    Rs. 8295
-                                </h6>
-                                <p
-                                    style={{
-                                        color: "green",
-                                        fontSize: "1.1rem",
-                                    }}
-                                >
-                                    inclusive of all taxes
-                                </p>
-                                <ReactStars
-                                    count={5}
-                                    size={33}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
+                        </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
+                        </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
+                        </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
+                        </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
+                        </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
+                        </div>
+                    </div>
+                    <div className="wishlist_card">
+                        <div className="card_left">
+                            <img
+                                className="prod_im"
+                                src={CompanyLogo}
+                                alt="product_image"
+                            />
+                        </div>
+                        <div className="card_right">
+                            <h5 className="card-title">Men Black JORDAN</h5>
+                            <h5 className="card-brand">ONE TAKE 2</h5>
+                            <h6
+                                className="card-cost"
+                                style={{
+                                    margin: "10px 0 0 0",
+                                    fontSize: "1.5rem",
+                                }}
+                            >
+                                Rs. 8295
+                            </h6>
+                            <p
+                                style={{
+                                    color: "green",
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                inclusive of all taxes
+                            </p>
+                            <ReactStars
+                                count={5}
+                                size={33}
+                                activeColor="#ffd700"
+                            />
                         </div>
                     </div>
                 </div>
