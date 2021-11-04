@@ -11,6 +11,7 @@ import Password from "./components/Login/Password";
 import Register from "./components/Register/Register";
 import Product from "./components/Product/Product";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Friends from "./components/Friends/Friends";
 
 function App() {
 
@@ -53,7 +54,11 @@ function App() {
                     <Route path="/profile" exact>
                         <Navbar token = { token } onLogout = {onLogout}/>
                         <UserProfile />
-                    </Route>  
+                    </Route>
+                    <Route path = "/friends" exact>
+                        <Navbar token = {token} onLogout = {onLogout}/>
+                        <Friends/>  
+                    </Route> 
                 </>
               ):(
                 <>

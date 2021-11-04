@@ -102,22 +102,46 @@ router.post('/addtowishlist', async (req, res) => {
   }
 });
 
-
-router.post('/addtofriendlist', async (req, res) => {
+// f_phone no - one to whom we are sending request ,u_phone no our own 
+router.post('/sendFriendReq', async (req, res) => {
   console.log(req.body);
-  const user = await User.findOne({ phone_no: req.body.phone_no });
+  const user = await User.findOne({ phone_no: req.body.f_phone_no });
   if (!user)
     return res
       .status(400)
       .send({ error: "Phn no is incorrect." });
   try {
-    user.friendlist.push(req.body.phone_no)
+    user.pending_request.push(req.body.u_phone_no)
     const new_user = await user.save(); res.status(201).send({ user })
     return response.status(201)
   } catch (error) {
     console.log(error);
   }
 });
+
+
+// u_phone no - our own ,f_phone no -friend's
+router.post('/AcceptFriendReq', async (req, res) => {
+  console.log(req.body);
+  const user2 = await User.findOne({ phone_no: req.body.f_phone_no });
+  const user = await User.findOne({ phone_no: req.body.u_phone_no });
+  if (!user)
+    return res
+      .status(400)
+      .send({ error: "Phn no is incorrect." });
+  try {
+    user.frienlist.push(req.body.f_phone_no)
+    user2.frienlist.push(req.body.u_phone_no)
+    user.pending_request.pull(req.body.f_phone_no)
+    const new_user2 = await user2.save(); 
+    const new_user = await user.save(); res.status(201).send({ user })
+
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+});
+ 
 
 
 
@@ -237,6 +261,27 @@ router.post('/getuser', async (req, res) => {
     res.send({ user1 })
   } catch (e) {
     res.status(400).send()
+  }
+})
+
+// rote to search names
+
+router.post('/getnames', async (req, res) => {
+
+  try {
+
+      const searchfield= req.body.name
+      User.find({name:{$regex:searchfield,$options:'$i'}}).then(
+        data=>{
+          res.send(data);
+        }
+      )
+      
+      
+
+  
+  } catch (e) {
+      res.status(400).send()
   }
 })
 
