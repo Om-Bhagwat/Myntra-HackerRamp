@@ -29,13 +29,17 @@ function App() {
 
   useEffect(()=>{
     const localToken = localStorage.getItem("token");
+    const phoneToken = localStorage.getItem("phone_number");
     if(localToken){
       setToken(localToken);
+      setPhone_Number(phoneToken);
     }
   },[])
 
   function onLogout(){
     localStorage.removeItem("token");
+    localStorage.removeItem("phone_number");
+    setPhone_Number();
     setToken("");
   }
 
@@ -57,7 +61,7 @@ function App() {
                     </Route>
                     <Route path = "/friends" exact>
                         <Navbar token = {token} onLogout = {onLogout}/>
-                        <Friends/>  
+                        <Friends phone_number={phone_number}/>  
                     </Route> 
                 </>
               ):(

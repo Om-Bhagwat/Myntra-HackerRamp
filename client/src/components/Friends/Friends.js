@@ -9,10 +9,17 @@ import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 import "./Friends.css";
 
-function Friends(){
+function Friends(props){
+
+    const {
+        phone_number
+    } = props;
+
+    console.log(phone_number);
 
     const [search , setSearch] = useState("");
     const [show , setShow ] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
 
     const search_function =async(e)=>{
         e.preventDefault();
@@ -26,7 +33,27 @@ function Friends(){
             )
 
             console.log(response);
+            setSearchResults(response.data);
             setShow(true);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const sendRequest = async(e,phone)=>{
+        e.preventDefault();
+        try{
+            console.log(phone);
+            console.log(phone_number);
+            const response = await axios.post(
+                "http://localhost:3003/api/user/sendFriendReq",
+                {
+                    f_phone_no : phone,
+                    u_phone_no : phone_number
+                }
+            )
+
+            console.log(response);
         }catch(error){
             console.log(error);
         }
@@ -140,125 +167,27 @@ function Friends(){
                 {show && search!=="" ? (
                     <div className="search_results">
                         <div className="results"> {/* profile list */}
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
+                            {searchResults.map((result)=>{
+                                return(
+                                    <div className="profile_car"> {/* profiles */}
+                                        <div className="oir">
+                                            <div className="p-pic"></div>
+                                            <div className="p-name">{result.name}</div>
                                         </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
+                                        {
+                                            // ? Note: write onClick function in send-request class
+                                        }
+                                        <div className="send-request">
+                                            <div className="send-btn">
+                                                <div onClick={(e)=>sendRequest(e,result.phone_no)}>
+                                                    <FaUserPlus/>
+                                                </div>
+                                                <h5>Send</h5>
+                                            </div>
                                         </div>
-                                        <h5>Send</h5>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
-                                        </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
-                                        </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
-                                        </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
-                                        </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile_car"> {/* profiles */}
-                                <div className="oir">
-                                    <div className="p-pic"></div>
-                                    <div className="p-name">Om Bhagwat</div>
-                                </div>
-                                {
-                                    // ? Note: write onClick function in send-request class
-                                }
-                                <div className="send-request">
-                                    <div className="send-btn">
-                                        <div>
-                                            <FaUserPlus/>
-                                        </div>
-                                        <h5>Send</h5>
-                                    </div>
-                                </div>
-                            </div>
+                                )
+                            })}
                         </div>
                     </div>
                 ):(

@@ -11,7 +11,7 @@ const multer = require('multer');
 
 // new
 
-//define storage for the images
+//define storage for the imag es
 
 const storage = multer.diskStorage({
   //destination for files
