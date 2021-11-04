@@ -1,0 +1,106 @@
+.phoneDiv {
+	/* border: firebrick solid; */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.phoneDiv2 {
+	/* border: fuchsia solid; */
+	margin: 0;
+	padding: 0;
+}
+
+.phoneDiv2 p {
+	margin: 0;
+	color: grey;
+}
+
+.phoneDiv2 h6 {
+	margin: 0;
+	font-size: 1.9rem;
+	color: black;
+}
+
+.FaCheckCircle {
+	color: green;
+}
+
+/* ________________ */
+
+.createPasswordInput {
+	margin: 0;
+	margin-bottom: 0px;
+}
+
+.requirements {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	margin: 0;
+}
+
+.requirements span {
+	margin: 5px 5px 0 0;
+	background-color: rgb(236, 236, 236);
+	padding: 5px;
+	color: grey;
+	font-size: 1.3rem;
+}
+
+/* _______ Select Gender ________ */
+
+.selectGender {
+	/* border: darkblue solid 1px; */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	margin: 20px 0 0 0;
+	padding: 0;
+}
+
+.selectGender h6 {
+	/* border: darkblue solid 1px; */
+	margin: 0;
+	color: grey;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.genderOption {
+	/* border: darkblue solid 1px; */
+	margin: 0 10px 0 20px;
+	/* padding: 0; */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.genderOption input[type=radio] {
+	/* font-size: 1rem; */
+	width: 15px;
+	height: 15px;
+	margin: 0 5px;
+	padding: 0;
+	border: green solid 2px;
+	/* background-color: green; */
+}
+
+.genderOption label {
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+}
+
+/* ________ Button ________ */
+
+.createAccountBtn {
+	width: 328px;
+	background-color: #FF3C6F;
+	border: none;
+	height: 40px;
+	color: white;
+	font-weight: 500;
+}
+

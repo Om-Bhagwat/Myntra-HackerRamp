@@ -1,0 +1,96 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* html{
+	overflow-x: hidden;
+	overflow-y: hidden;
+	height:100%
+} */
+
+body {
+	background-color: rgb(254,254,254);
+}
+
+.navbar {
+	height: 10vh;
+	/* border: green solid; */
+	background-color: white;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+	-webkit-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	-moz-box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	box-shadow: 0px 43px 30px -25px rgba(248,248,248,1);
+	margin: 0;
+}
+
+/* .navbar .logo {
+	border: purple solid;
+} */
+
+.navbar .logo img {
+	width: 50px;
+	height: 35px;
+}
+
+.items {
+	/* border: green solid; */
+	width: 88vw;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.categories {
+	width: 40vw;
+	/* border: palevioletred solid; */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.categories a {
+	/* border: purple solid; */
+	/* padding: 3px; */
+	margin: 5px 6px;
+	text-decoration: none;
+	color: black;
+	/* font-size: 1.1rem; */
+	font-weight: 600;
+}
+
+.navObj {
+	/* border: gold solid; */
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.navObj > * {
+	/* border: purple solid; */
+	margin: 0 13px 0 13px;
+	/* padding: 3px; */
+	font-size: 1.2rem;
+}
+
+.navObj a {
+	/* border: red solid; */
+	display: flex;
+	flex-flow: column nowrap;
+	/* justify-items: center; */
+	/* justify-content: center; */
+	align-items: center;
+	color: black;
+	font-size: 1.5rem;
+}
+
+.navObj a p {
+	font-size: 1rem;
+	font-weight: 600;
+}

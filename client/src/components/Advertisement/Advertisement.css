@@ -1,0 +1,28 @@
+.short_pic, .long_pic {
+    margin: 0 15px;
+}
+
+.SaleisLive {
+    text-align: center;
+}
+
+.SaleisLive img{
+    /* border: rebeccapurple solid; */
+    width: 90vw;
+}
+
+.long_pic div {
+    text-align: center;
+}
+
+.Hdfc img{
+    /* border: rebeccapurple solid; */
+    width: 95vw;
+    
+}
+
+.Buy1Get1 img{
+    /* border: rebeccapurple solid; */
+    width: 95vw;
+
+}
