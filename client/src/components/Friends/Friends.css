@@ -87,6 +87,9 @@
 .right_div_friends::-webkit-scrollbar {
     width: 1em;
 }
+.friend-list-body::-webkit-scrollbar {
+    width: 1em;
+}
 
 .search_Bar{
     text-align: center;
