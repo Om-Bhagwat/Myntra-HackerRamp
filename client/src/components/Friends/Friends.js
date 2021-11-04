@@ -124,7 +124,7 @@ function Friends(){
                     />
                     <button onClick={search_function} >Search</button>
                 </div>
-                {show ? (
+                {show && search!=="" ? (
                     <div className="search_results">
                         <div className="results">
                             <div className="profile_car">
@@ -135,7 +135,7 @@ function Friends(){
                                 </div>
                                 <div>
                                     {/* icon */}
-                                    <h5>Accept</h5>
+                                    <h5>Send</h5>
                                 </div>
                             </div>
                         </div>
