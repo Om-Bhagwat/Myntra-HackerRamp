@@ -81,6 +81,12 @@ const userSchema = new mongoose.Schema({
       type: String
     },
   ],
+  pending_request:[
+    {
+      type:String,
+      default:''
+    }
+  ],
   frienlist: [
     {
       type: String
