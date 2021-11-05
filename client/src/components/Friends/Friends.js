@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState,useEffect} from "react";
 import ReactStars from "react-rating-stars-component";
 import axios from "axios";
 // import { render } from "react-dom";
@@ -15,11 +15,53 @@ function Friends(props){
         phone_number
     } = props;
 
-    console.log(phone_number);
+    // console.log(phone_number);
 
     const [search , setSearch] = useState("");
     const [show , setShow ] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [pendingRequest, setPendingRequest] = useState([]);
+    const [nam, setNam] = useState([]);
+
+    useEffect(()=>{
+
+        async function Load_request(){
+            try{
+                const response = await axios.post(
+                    "http://localhost:3003/api/user/getuser",
+                    {
+                        phone_no : phone_number
+                    }
+                )
+    
+                console.log(response.data);
+                setPendingRequest(response.data.user1[0].pending_request);
+            }catch(error){
+                console.log(error);
+            }
+        }
+
+
+
+
+        Load_request();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
+    const Load_Names_Request=async(phone_num)=>{
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/getuser",
+                {
+                    phone_no : phone_num
+                }
+            )
+                setShowName(response.data)
+        }catch(error){
+            console.log(error);
+        }
+    }
+
 
     const search_function =async(e)=>{
         e.preventDefault();
@@ -103,54 +145,23 @@ function Friends(props){
                 <h3 className="friend-list-head">REQUESTS</h3>
                 <div className="friend-list-body">
                     {/* !!!!! Use this one as template !!!! */}
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>
-                                {/* <Link to="localhost:3003/profile/:id"> */}
-                                Priyanshi
-                                {/* </Link> */}
-                            </h6>
-                            <p 
-                            // onClick={() => acceptRequest(someID)}
-                            >
-                                Accept Request
-                            </p>
+                    {pendingRequest.map((req)=>{
+                        <div className="friends_box">
+                            <div className="friend-list-pic"></div>
+                            <div className="info_tab">
+                                <h6>
+                                    {/* <Link to="localhost:3003/profile/:id"> */}
+                                    Priyanshi
+                                    {/* </Link> */}
+                                </h6>
+                                <p 
+                                // onClick={() => acceptRequest(someID)}
+                                >
+                                    Accept Request
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Harshista</h6>
-                            <p 
-                            // onClick={() => acceptRequest(someID)}
-                            >
-                                Accept Request
-                            </p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Parth</h6>
-                            <p 
-                            // onClick={() => acceptRequest(someID)}
-                            >
-                                Accept Request
-                            </p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Yash</h6>
-                            <p 
-                            // onClick={() => acceptRequest(someID)}
-                            >
-                                Accept Request
-                            </p>
-                        </div>
-                    </div>
+                    })}
                 </div>
             </div>
 
