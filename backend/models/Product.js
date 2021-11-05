@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     type:String
 
   },
-  p_desc:{
+  p_brand:{
 
     type:String
 
@@ -23,10 +23,15 @@ const productSchema = new mongoose.Schema({
     type:String
 
   },
-  p_price:{
-      type:Number
+  p_orig_price:{
+      type:String
   },
-
+  p_dis_price:{
+    type:String
+  },
+  p_discount:{
+    type:String
+  },
   img: {
     type: String,
     default: 'placeholder.jpg',

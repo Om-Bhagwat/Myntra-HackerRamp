@@ -11,7 +11,7 @@ const multer = require('multer');
 
 // new
 
-//define storage for the images
+//define storage for the imag es
 
 const storage = multer.diskStorage({
   //destination for files
@@ -113,7 +113,7 @@ router.post('/sendFriendReq', async (req, res) => {
   try {
     user.pending_request.push(req.body.u_phone_no)
     const new_user = await user.save(); res.status(201).send({ user })
-    return response.status(201)
+    
   } catch (error) {
     console.log(error);
   }
@@ -136,7 +136,7 @@ router.post('/AcceptFriendReq', async (req, res) => {
     const new_user2 = await user2.save(); 
     const new_user = await user.save(); res.status(201).send({ user })
 
-    return response.status(201)
+    
   } catch (error) {
     console.log(error);
   }
@@ -226,15 +226,19 @@ router.post("/productUpload", upload.single('image'), async (req, res) => {
     p_id: req.body.p_id,
 
     p_name: req.body.p_name,
-    p_desc: req.body.p_desc,
+    p_brand: req.body.p_brand,
     p_size: req.body.p_size,
     p_price: req.body.p_price,
+    p_orig_price:req.body.p_orig_price,
+    p_dis_price:req.body.p_dis_price,
+    p_discount:req.body.p_discount
 
   });
   try {
 
-    await product.save();
+    // await product.save();
     product.img = req.file.filename
+    await product.save();
 
 
 
@@ -250,12 +254,129 @@ router.post("/productUpload", upload.single('image'), async (req, res) => {
   }
 });
 
+//get all Friends
+router.post('/allFriends', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].frienlist
+
+    var arr2 = []
+    
+    // nietos.push(user1[0])
+  
+  //   arr.forEach(myFunction);
+
+
+  // async function myFunction(item) {
+  //   var user2 = await User.find({ phone_no: item })
+  
+  //   await nietos.push(user2[0])
+  //   console.log(user2[0])
+    
+  // }
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+// get all pending request
+router.post('/allPendingReq', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].pending_request
+
+    var arr2 = []
+    
+    // nietos.push(user1[0])
+  
+  //   arr.forEach(myFunction);
+
+
+  // async function myFunction(item) {
+  //   var user2 = await User.find({ phone_no: item })
+  
+  //   await nietos.push(user2[0])
+  //   console.log(user2[0])
+    
+  // }
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
+// get all friends
+router.post('/allFriends', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].frienlist
+
+    var arr2 = []
+    
+    // nietos.push(user1[0])
+  
+  //   arr.forEach(myFunction);
+
+
+  // async function myFunction(item) {
+  //   var user2 = await User.find({ phone_no: item })
+  
+  //   await nietos.push(user2[0])
+  //   console.log(user2[0])
+    
+  // }
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
 
 // get user
 router.post('/getuser', async (req, res) => {
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
+    
 
 
     res.send({ user1 })
