@@ -249,6 +249,43 @@ router.post("/productUpload", upload.single('image'), async (req, res) => {
   }
 });
 
+//get all Friends
+router.post('/allFriends', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].frienlist
+
+    var arr2 = []
+    
+    // nietos.push(user1[0])
+  
+  //   arr.forEach(myFunction);
+
+
+  // async function myFunction(item) {
+  //   var user2 = await User.find({ phone_no: item })
+  
+  //   await nietos.push(user2[0])
+  //   console.log(user2[0])
+    
+  // }
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
 
 // get all pending request
 router.post('/allPendingReq', async (req, res) => {

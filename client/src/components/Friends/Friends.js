@@ -20,22 +20,41 @@ function Friends(props){
     const [search , setSearch] = useState("");
     const [show , setShow ] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
-    const [pendingRequest, setPendingRequest] = useState([]);
-    const [nam, setNam] = useState([]);
+    const [pendingRequest, setPendingRequest] = useState({});
+    const [listOfFriends, setlistOfFriends] = useState({});
+    const [load, setLoad] = useState(true);
+    const [loading, setloading] = useState(true);
 
     useEffect(()=>{
 
         async function Load_request(){
             try{
                 const response = await axios.post(
-                    "http://localhost:3003/api/user/getuser",
+                    "http://localhost:3003/api/user/allPendingReq",
                     {
                         phone_no : phone_number
                     }
                 )
     
-                console.log(response.data);
-                setPendingRequest(response.data.user1[0].pending_request);
+                console.log(response.data.arr2);
+                setPendingRequest(response.data.arr2);
+                setLoad(false);
+            }catch(error){
+                console.log(error);
+            }
+        }
+
+        async function Load_List_friends(){
+            try{
+                const response = await axios.post(
+                    "http://localhost:3003/api/user/allFriends",
+                    {
+                        phone_no : phone_number
+                    }
+                )
+                console.log(response.data.arr2);
+                setlistOfFriends(response.data.arr2);
+                setloading(false);
             }catch(error){
                 console.log(error);
             }
@@ -45,22 +64,12 @@ function Friends(props){
 
 
         Load_request();
+        Load_List_friends();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    const Load_Names_Request=async(phone_num)=>{
-        try{
-            const response = await axios.post(
-                "http://localhost:3003/api/user/getuser",
-                {
-                    phone_no : phone_num
-                }
-            )
-                setShowName(response.data)
-        }catch(error){
-            console.log(error);
-        }
-    }
+    
+
 
 
     const search_function =async(e)=>{
@@ -101,67 +110,71 @@ function Friends(props){
         }
     }
 
+    const accept_Request = async(e, phone)=>{
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/AcceptFriendReq",
+                {   
+                    u_phone_no : phone_number,
+                    f_phone_no : phone
+                }
+            )
+
+            console.log(response);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     return (
         <div className="container-fluid">
             <div className="col-xs-3 col-md-3 Left_div_friends">
                 <h3 className="friend-list-head">FRIENDS LIST</h3>
                 <div className="friend-list-body">
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Harsh</h6>
-                            <p>5 Mutual Friends</p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Ayush</h6>
-                            <p>5 Mutual Friends</p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Om</h6>
-                            <p>3 Mutual Friends</p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Parth</h6>
-                            <p>6 Mutual Friends</p>
-                        </div>
-                    </div>
-                    <div className="friends_box">
-                        <div className="friend-list-pic"></div>
-                        <div className="info_tab">
-                            <h6>Yash</h6>
-                            <p>8 Mutual Friends</p>
-                        </div>
-                    </div>
+                    {loading ? (
+                        <div>Loading</div>
+                    ):(
+                        <>
+                            {listOfFriends.map((friend)=>{
+                                return(
+                                    <div className="friends_box">
+                                        <div className="friend-list-pic"></div>
+                                        <div className="info_tab">
+                                            <h6>{friend.name}</h6>
+                                            <p>5 Mutual Friends</p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </>
+                    )}
                 </div>
                 <h3 className="friend-list-head">REQUESTS</h3>
                 <div className="friend-list-body">
                     {/* !!!!! Use this one as template !!!! */}
-                    {pendingRequest.map((req)=>{
-                        <div className="friends_box">
-                            <div className="friend-list-pic"></div>
-                            <div className="info_tab">
-                                <h6>
-                                    {/* <Link to="localhost:3003/profile/:id"> */}
-                                    Priyanshi
-                                    {/* </Link> */}
-                                </h6>
-                                <p 
-                                // onClick={() => acceptRequest(someID)}
-                                >
-                                    Accept Request
-                                </p>
-                            </div>
-                        </div>
-                    })}
+                    {load ?(
+                        <div>Loading</div>
+                    ):(
+                        <>
+                            {pendingRequest.map((req)=>{
+                                return(
+                                    <div className="friends_box">
+                                        <div className="friend-list-pic"></div>
+                                        <div className="info_tab">
+                                            <h6>
+                                                {/* <Link to="localhost:3003/profile/:id"> */}
+                                                {req.name}
+                                                {/* </Link> */}
+                                            </h6>
+                                            <p onClick={(e)=>accept_Request(e,req.phone_no)}>
+                                                Accept Request
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </>
+                    )}
                 </div>
             </div>
 
