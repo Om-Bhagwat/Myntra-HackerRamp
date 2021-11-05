@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Friends from './components/Friends/Friends';
+//import Friends from './components/Friends/Friends';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Friends />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

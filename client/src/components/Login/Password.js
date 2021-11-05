@@ -37,6 +37,7 @@ function Password(props){
              )
                 console.log(response);
                 localStorage.setItem("token",response.data.token);
+                localStorage.setItem("phone_number",phone_number);
                 setToken(response.data.token);
                 history.push("/");
          }catch(error){
