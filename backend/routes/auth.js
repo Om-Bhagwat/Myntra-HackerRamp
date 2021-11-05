@@ -112,7 +112,7 @@ router.post('/sendFriendReq', async (req, res) => {
   try {
     user.pending_request.push(req.body.u_phone_no)
     const new_user = await user.save(); res.status(201).send({ user })
-    return response.status(201)
+    
   } catch (error) {
     console.log(error);
   }
@@ -135,7 +135,7 @@ router.post('/AcceptFriendReq', async (req, res) => {
     const new_user2 = await user2.save(); 
     const new_user = await user.save(); res.status(201).send({ user })
 
-    return response.status(201)
+    
   } catch (error) {
     console.log(error);
   }
@@ -250,11 +250,52 @@ router.post("/productUpload", upload.single('image'), async (req, res) => {
 });
 
 
+// get all pending request
+router.post('/allPendingReq', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].pending_request
+
+    var arr2 = []
+    
+    // nietos.push(user1[0])
+  
+  //   arr.forEach(myFunction);
+
+
+  // async function myFunction(item) {
+  //   var user2 = await User.find({ phone_no: item })
+  
+  //   await nietos.push(user2[0])
+  //   console.log(user2[0])
+    
+  // }
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
+
 // get user
 router.post('/getuser', async (req, res) => {
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
+    
 
 
     res.send({ user1 })
