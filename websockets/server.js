@@ -11,11 +11,13 @@ app.use(cors());
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    socket.on('joinroom', (data) => {
+    socket.on('join_room', (data) => {
+        console.log("joined")
         socket.join(data);
     })
-    socket.on('sendmessage', (data) => {
-        socket.to(data.room).emit('recievemessage', data.content);
+    socket.on('send_message', (data) => {
+        console.log(data);
+        socket.to(data.room).emit('recieve_message', data.content);
     })
 });
 
