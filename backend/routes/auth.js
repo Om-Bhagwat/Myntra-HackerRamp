@@ -382,6 +382,46 @@ router.post('/allFriends', async (req, res) => {
   }
 })
 
+
+// get room id u_phone_no - login user , f_phon_no - friends
+
+router.post('/getRoomId', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.u_phone_no })
+    const arr=user1[0].frienlist
+    // console.log(arr)
+
+    var arr2 = []
+    var x;
+    
+
+  for (let i = 0; i < arr.length; i++) {
+
+    // console.log(arr[i].f_no);
+    // console.log(req.body.f_phone_no)
+    if(req.body.f_phone_no==(arr[i].f_no)){
+      
+      x=arr[i].room_id
+      
+    }
+
+  
+
+  }
+    
+  
+
+
+
+    res.send({ x })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
+
 // get all pending request
 router.post('/allPendingReq', async (req, res) => {
 
@@ -391,18 +431,7 @@ router.post('/allPendingReq', async (req, res) => {
 
     var arr2 = []
     
-    // nietos.push(user1[0])
-  
-  //   arr.forEach(myFunction);
 
-
-  // async function myFunction(item) {
-  //   var user2 = await User.find({ phone_no: item })
-  
-  //   await nietos.push(user2[0])
-  //   console.log(user2[0])
-    
-  // }
   for (let i = 0; i < arr.length; i++) {
 
     var user2 = await User.find({ phone_no: arr[i].f_no })
