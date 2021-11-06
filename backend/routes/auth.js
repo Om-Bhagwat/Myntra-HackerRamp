@@ -5,6 +5,7 @@ const Product = require('../models/Product');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
+
 //const Product = require('../models/product');
 
 
@@ -17,6 +18,7 @@ const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
     callback(null, './public/uploads/images');
+    //  callback(null, '../../client/src/img');
   },
 
   //add back the extension
@@ -503,6 +505,21 @@ router.post('/getproduct', async (req, res) => {
     res.status(400).send()
   }
 })
+
+
+// get all product
+router.get('/getAllproduct', async (req, res) => {
+
+  try {
+    const product1 = await Product.find({})
+
+
+    res.send({ product1 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
 
 
 

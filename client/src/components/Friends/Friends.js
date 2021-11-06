@@ -3,11 +3,12 @@ import ReactStars from "react-rating-stars-component";
 import axios from "axios";
 // import { render } from "react-dom";
 
-import CompanyLogo from "../../img/myntraLogo.png";
-
-import { FaUserPlus, FaSearch } from "react-icons/fa";
-
 import "./Friends.css";
+
+// componenet imports
+import ChatBox from "../chatbox/Chatbox";
+import CompanyLogo from "../../img/myntraLogo.png";
+import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 function Friends(props){
 
@@ -24,6 +25,8 @@ function Friends(props){
     const [listOfFriends, setlistOfFriends] = useState({});
     const [load, setLoad] = useState(true);
     const [loading, setloading] = useState(true);
+    const [prof, setprof] = useState([]);
+    const [flag ,setFlag] = useState(true);
 
     useEffect(()=>{
 
@@ -126,6 +129,28 @@ function Friends(props){
         }
     }
 
+    const load_Name = async(e,phone)=>{
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/getuser",
+                {
+                    phone_no : phone
+                }
+            )
+
+            console.log(response);
+            setprof(response.data.user1[0]);
+            setFlag(false);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    let flagChatbox = false;
+    const toggleChatbox = () => {
+        flagChatbox = !document.getElementById("chatbox").classList.toggle("disable-sth",flagChatbox);
+    };
+
     return (
         <div className="container-fluid">
             <div className="col-xs-3 col-md-3 Left_div_friends">
@@ -139,7 +164,7 @@ function Friends(props){
                                 return(
                                     <div className="friends_box">
                                         <div className="friend-list-pic"></div>
-                                        <div className="info_tab">
+                                        <div className="info_tab" onClick={(e)=>load_Name(e,friend.phone_no)}>
                                             <h6>{friend.name}</h6>
                                             <p>5 Mutual Friends</p>
                                         </div>
@@ -214,20 +239,23 @@ function Friends(props){
                             })}
                         </div>
                     </div>
-                ):(
+                ):(<></>)}
+                {flag ? (
                     <>
+                        Loading
                     </>
-                )}
-                <div className="WishlistNames">
-                    <div className="circle_img"></div>
-                    <div className="in">
-                        <h3>Parth Bhardwaj's Wishlist</h3>
-                        <div className="bt">
-                            <button>Remove Friend</button>
-                            <button>Block Friend</button>
+                ):(
+                    <div className="WishlistNames">
+                        <div className="circle_img"></div>
+                        <div className="in">
+                            <h3>{prof.name}</h3>
+                            <div className="bt">
+                                <button>Remove Friend</button>
+                                <button onClick={toggleChatbox} >Messages</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
                 {/* <hr className="line"/> */}
                 <div className="help-dialogue">
                     <h4>
@@ -235,7 +263,6 @@ function Friends(props){
                         their wishlist
                     </h4>
                 </div>
-
                 <div className="friend_wishlist">
                     <div className="wishlist_card">
                         <div className="card_left">
@@ -483,6 +510,7 @@ function Friends(props){
                         </div>
                     </div>
                 </div>
+                <ChatBox flagChatbox={flagChatbox} toggleChatbox={toggleChatbox}/>
             </div>
         </div>
     );
