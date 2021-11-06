@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
 const uuid = require('uuid');
+const temporaryProductSchema = require('../models/tempararyProductSchema');
 
 //const Product = require('../models/product');
 
@@ -594,6 +595,60 @@ router.post('/allproductsWishlist', async (req, res) => {
   }
 })
 
+//router.post("/like", async (req, res) => {
+//  console.log(req.body);
+//  const user = await User.findOne({ phone_no: req.body.phone_no });
+//  if (!user)
+//    return res
+//      .status(400)
+//      .send({ error: "Phn no is incorrect." });
+//  try {
+//    user.likes.push(req.body.product_id)
+//    const new_user = await user.save(); res.status(201).send({ user })
+//    return response.status(201)
+//  } catch (error) {
+//    console.log(error);
+//  }
+//});
+
+
+//swipe right on product
+router.post('/swiperight', async (req, res) =>{
+
+  const product = await Product.findOne({ p_id: req.body.p_id });
+  if (!product)
+    return res
+      .status(400)
+      .send({ error: "Product not found." });
+  try {
+
+    product.findOne({ p_id: req.body.p_id }).then(
+      data => {
+        product.likecount = data.likecount + 1;
+        data.save()
+      }
+    )
+
+    for (let i = 0; i < p_id.length; i++) {
+
+      if(p_id[i]==req.body.p_id){
+        product.likecount=product.likecount+1;
+      }
+
+    }
+    //temporaryProductSchema.productlikedarray.pid.push(req.body.p_id)
+    const new_product = await product.save(); res.status(201).send({ product })
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+
+})
+
+router.post("/topgrossingproducts", async (req, res) =>{
+
+
+})
 
 
 
