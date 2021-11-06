@@ -3,11 +3,12 @@ import ReactStars from "react-rating-stars-component";
 import axios from "axios";
 // import { render } from "react-dom";
 
-import CompanyLogo from "../../img/myntraLogo.png";
-
-import { FaUserPlus, FaSearch } from "react-icons/fa";
-
 import "./Friends.css";
+
+// componenet imports
+import ChatBox from "../Chatbox/Chatbox";
+import CompanyLogo from "../../img/myntraLogo.png";
+import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 function Friends(props){
 
@@ -126,6 +127,11 @@ function Friends(props){
         }
     }
 
+    let flagChatbox = false;
+    const toggleChatbox = () => {
+        flagChatbox = !document.getElementById("chatbox").classList.toggle("disable-sth",flagChatbox);
+    };
+
     return (
         <div className="container-fluid">
             <div className="col-xs-3 col-md-3 Left_div_friends">
@@ -214,17 +220,14 @@ function Friends(props){
                             })}
                         </div>
                     </div>
-                ):(
-                    <>
-                    </>
-                )}
+                ):(<></>)}
                 <div className="WishlistNames">
                     <div className="circle_img"></div>
                     <div className="in">
                         <h3>Parth Bhardwaj's Wishlist</h3>
                         <div className="bt">
                             <button>Remove Friend</button>
-                            <button>Block Friend</button>
+                            <button onClick={toggleChatbox} >Messages</button>
                         </div>
                     </div>
                 </div>
@@ -235,7 +238,6 @@ function Friends(props){
                         their wishlist
                     </h4>
                 </div>
-
                 <div className="friend_wishlist">
                     <div className="wishlist_card">
                         <div className="card_left">
@@ -483,6 +485,7 @@ function Friends(props){
                         </div>
                     </div>
                 </div>
+                <ChatBox flagChatbox={flagChatbox} toggleChatbox={toggleChatbox}/>
             </div>
         </div>
     );
