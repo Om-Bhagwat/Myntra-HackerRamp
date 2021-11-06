@@ -42,7 +42,10 @@ function UserProfile(props){
                 <div className="Name">
                     <div className="left_photo">
                         <div className="photo_cont">
-
+                            {/* <label htmlFor="new_pic" className="new_pic"> */}
+                            <input type="file" name="new_pic" id="new_pic" />
+                            {/* <span className="file-custom"></span>
+                            </label> */}
                         </div>
                         {/* <button>Edit</button> */}
                     </div>

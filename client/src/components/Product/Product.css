@@ -3,28 +3,30 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding: 10px;
 }
 
-.oppa{
+.product-card {
     background-color: #f7fbfc;
-    margin:20px;
-    text-align: center;
-    height: 35rem;
-    width: 28rem;
+    margin:10px;
+    /* text-align: center; */
+    height: 350px;
+    width: 250px;
 }
 
-.oppa:hover {
+.product-card:hover {
     box-shadow: 0 0 16px 0px rgb(207, 207, 207);
 }
 
-.oppa img{
-    height: 23rem;
-    width: 18rem;
+.card-img-top {
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
 }
 
-.oppa div{
-    margin:13px;
-    text-align: left;
+.product-card div{
+    margin:10px;
+    /* text-align: left; */
 }
 
 
@@ -32,8 +34,8 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    width: 100%;
-    margin: 0;
+    /* width: 100%; */
+    /* margin: 0s; */
 }
 
 .card-btn {
@@ -42,17 +44,32 @@
     margin: 0 5px 10px 5px;
     font-family: Roboto;
     font-weight: 600;
+    border: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
-.card-btn * {
-    height: fit-content;
+.card-btn .cardbtn-icons {
     margin: auto 2px;
-    padding: 2px;
     height: 20px;
     width: 20px;
 }
 
-.wishlist-btn {
+.card-btn span {
+    margin-left: 5px;
 }
-.buy-btn {
+
+.wishlist-btn:hover {
+    color: #ff3f6c;
+}
+.wishlist-btn:active {
+    color: #000;
+}
+
+.buy-btn:hover {
+    color: #ff3f6c;
+}
+.buy-btn:active {
+    color: #000;
 }

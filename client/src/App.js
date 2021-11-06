@@ -2,6 +2,7 @@
 //Import statements
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
+import axios from "axios";
 
 //Components import
 import Navbar from './components/Navbar/Navbar';
@@ -34,6 +35,23 @@ function App() {
       setToken(localToken);
       setPhone_Number(phoneToken);
     }
+
+    async function Load_name(){
+      try{
+          const response = await axios.post(
+              "http://localhost:3003/api/user/getuser",
+              {
+                  phone_no : phone_number
+              }
+          )
+          console.log(response.data);
+          setName(response.data.user1[0].name);
+      }catch(error){
+          console.log(error);
+      }
+  }
+
+  Load_name();
   },[])
 
   function onLogout(){
@@ -61,7 +79,7 @@ function App() {
                     </Route>
                     <Route path = "/friends" exact>
                         <Navbar token = {token} onLogout = {onLogout}/>
-                        <Friends phone_number={phone_number}/>  
+                        <Friends phone_number={phone_number} name={name}/>  
                     </Route> 
                 </>
               ):(
