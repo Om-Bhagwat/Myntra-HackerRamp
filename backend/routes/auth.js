@@ -5,6 +5,7 @@ const Product = require('../models/Product');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
+const uuid = require('uuid');
 
 //const Product = require('../models/product');
 
@@ -132,8 +133,11 @@ router.post('/AcceptFriendReq', async (req, res) => {
       .status(400)
       .send({ error: "Phn no is incorrect." });
   try {
-    user.frienlist.push(req.body.f_phone_no)
-    user2.frienlist.push(req.body.u_phone_no)
+    var x=uuid.v4();
+    // user.frienlist.push(req.body.f_phone_no)
+    // user2.frienlist.push(req.body.u_phone_no)
+    user.frienlist.push({f_no:req.body.f_phone_no,room_id:x})
+    user2.frienlist.push({f_no:req.body.u_phone_no,room_id:x})
     user.pending_request.pull(req.body.f_phone_no)
     const new_user2 = await user2.save(); 
     const new_user = await user.save(); res.status(201).send({ user })
@@ -184,24 +188,6 @@ router.post("/register2", async (req, res) => {
     return res
       .status(400)
       .send({ error: "Not available at the moment", success: "false" });
-  }
-});
-
-
-
-router.post("'removefromwishlist", async (req, res) => {
-  console.log(req.body);
-  const user = await User.findOne({ phone_no: req.body.phone_no });
-  if (!user)
-    return res
-      .status(400)
-      .send({ error: "Phn no is incorrect." });
-  try {
-    user.wishlist.pull(req.body.product_id)
-    const new_user = await user.save(); res.status(201).send({ user })
-    return response.status(201)
-  } catch (error) {
-    console.log(error);
   }
 });
 
@@ -381,7 +367,7 @@ router.post('/allFriends', async (req, res) => {
   // }
   for (let i = 0; i < arr.length; i++) {
 
-    var user2 = await User.find({ phone_no: arr[i] })
+    var user2 = await User.find({ phone_no: arr[i].f_no })
     arr2.push(user2[0])
 
   }
@@ -396,12 +382,85 @@ router.post('/allFriends', async (req, res) => {
   }
 })
 
+
+// get room id u_phone_no - login user , f_phon_no - friends
+
+router.post('/getRoomId', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.u_phone_no })
+    const arr=user1[0].frienlist
+    // console.log(arr)
+
+    var arr2 = []
+    var x;
+    
+
+  for (let i = 0; i < arr.length; i++) {
+
+    // console.log(arr[i].f_no);
+    // console.log(req.body.f_phone_no)
+    if(req.body.f_phone_no==(arr[i].f_no)){
+      
+      x=arr[i].room_id
+      
+    }
+
+  
+
+  }
+    
+  
+
+
+
+    res.send({ x })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
+
 // get all pending request
 router.post('/allPendingReq', async (req, res) => {
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
     const arr=user1[0].pending_request
+
+    var arr2 = []
+    
+
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await User.find({ phone_no: arr[i].f_no })
+    arr2.push(user2[0])
+
+  }
+    
+  
+
+
+
+    res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+
+<<<<<<< HEAD
+// get all products in whislist
+router.post('/allproductsWishlist', async (req, res) => {
+=======
+// get all friends
+router.post('/allFriends', async (req, res) => {
+>>>>>>> a8be9abf3527dd92acacfa1597b304e319b5857a
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].frienlist
 
     var arr2 = []
     
@@ -417,40 +476,23 @@ router.post('/allPendingReq', async (req, res) => {
   //   console.log(user2[0])
     
   // }
-    for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
 
-      var user2 = await User.find({ phone_no: arr[i] })
-      arr2.push(user2[0])
+    var user2 = await User.find({ phone_no: arr[i] })
+    arr2.push(user2[0])
 
-    }
+  }
+    
+  
 
-  res.send({ arr2 })
+
+
+    res.send({ arr2 })
   } catch (e) {
     res.status(400).send()
   }
 })
 
-
-// get all products in whislist
-router.post('/allproductsWishlist', async (req, res) => {
-
-  try {
-    const user1 = await User.find({ phone_no: req.body.phone_no })
-    const arr=user1[0].wishlist
-
-    var arr2 = []
-
-    for (let i = 0; i < arr.length; i++) {
-
-      var user2 = await Product.find({ p_id: arr[i] })
-      arr2.push(user2[0])
-
-    }
-  res.send({ arr2 })
-  } catch (e) {
-    res.status(400).send()
-  }
-})
 
 
 // get user
@@ -516,6 +558,44 @@ router.get('/getAllproduct', async (req, res) => {
   }
 })
 
+
+// remove from freindlist
+router.post("'removefromwishlist", async (req, res) => {
+  console.log(req.body);
+  const user = await User.findOne({ phone_no: req.body.phone_no });
+  if (!user)
+    return res
+      .status(400)
+      .send({ error: "Phn no is incorrect." });
+  try {
+    user.wishlist.pull(req.body.product_id)
+    const new_user = await user.save(); res.status(201).send({ user })
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// users wish list
+router.post('/allproductsWishlist', async (req, res) => {
+
+  try {
+    const user1 = await User.find({ phone_no: req.body.phone_no })
+    const arr=user1[0].wishlist
+
+    var arr2 = []
+
+    for (let i = 0; i < arr.length; i++) {
+
+      var user2 = await Product.find({ p_id: arr[i] })
+      arr2.push(user2[0])
+
+    }
+  res.send({ arr2 })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
 
 
 
