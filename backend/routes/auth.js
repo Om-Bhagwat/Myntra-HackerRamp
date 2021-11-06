@@ -185,6 +185,90 @@ router.post("/register2", async (req, res) => {
   }
 });
 
+//router.post("/like", async (req, res) => {
+//  console.log(req.body);
+//  const user = await User.findOne({ phone_no: req.body.phone_no });
+//  if (!user)
+//    return res
+//      .status(400)
+//      .send({ error: "Phn no is incorrect." });
+//  try {
+//    user.likes.push(req.body.product_id)
+//    const new_user = await user.save(); res.status(201).send({ user })
+//    return response.status(201)
+//  } catch (error) {
+//    console.log(error);
+//  }
+//});
+//
+//router.post("/unlike", async (req, res) => {
+//  console.log(req.body);
+//  const user = await User.findOne({ phone_no: req.body.phone_no });
+//  if (!user)
+//    return res
+//      .status(400)
+//      .send({ error: "Phn no is incorrect." });
+//  try {
+//    user.likes.pull(req.body.product_id)
+//    const new_user = await user.save(); res.status(201).send({ user })
+//    return response.status(201)
+//  } catch (error) {
+//    console.log(error);
+//  }
+//});
+//
+//router.get("/percentagelikes", async (req, res) => {
+//  console.log(req.body);
+//  const user = await User.findOne({ phone_no: req.body.phone_no });
+//  if (!user)
+//    return res
+//      .status(400)
+//      .send({ error: "Phn no is incorrect." });
+//  try {
+//    const product = await Product.findOne({ _id: req.body.product_id })
+//    const likes = product.likes.length
+//    const total = product.likes.length + product.dislikes.length
+//    const percentage = (likes / total) * 100
+//    res.status(201).send({ percentage })
+//    return response.status(201)
+//  } catch (error) {
+//    console.log(error);
+//  }
+//});
+//
+////route.post("/commentonproduct", async (req, res) => {
+////  console.log(req.body);
+////  const user = await User.findOne({ phone_no: req.body.phone_no });
+////  if (!user)
+////    return res
+////      .status(400)
+////      .send({ error: "Phn no is incorrect." });
+////  try {
+////    user.comments.push(req.body.product_id)
+////    const new_user = await user.save(); res.status(201).send({ user })
+////    return response.status(201)
+////  } catch (error) {
+////    console.log(error);
+////  }
+////});
+//
+//route.post("/rateproduct", async (req, res) => {
+//  console.log(req.body);
+//  const user = await User.findOne({ phone_no: req.body.phone_no });
+//  if (!user)
+//    return res
+//      .status(400)
+//      .send({ error: "Phn no is incorrect." });
+//  try {
+//    user.rated_products.push(req.body.product_id)
+//    const new_user = await user.save(); res.status(201).send({ user })
+//    return response.status(201)
+//  } catch (error) {
+//    console.log(error);
+//  }
+//});
+//
+//
 // login 2
 
 router.post("/login2", async (req, res) => {
