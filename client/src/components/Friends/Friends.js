@@ -6,14 +6,15 @@ import axios from "axios";
 import "./Friends.css";
 
 // componenet imports
-import ChatBox from "../Chatbox/Chatbox";
+import ChatBox from "../chatbox/Chatbox";
 import CompanyLogo from "../../img/myntraLogo.png";
 import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 function Friends(props){
 
     const {
-        phone_number
+        phone_number,
+        name
     } = props;
 
     // console.log(phone_number);
@@ -27,6 +28,8 @@ function Friends(props){
     const [loading, setloading] = useState(true);
     const [prof, setprof] = useState([]);
     const [flag ,setFlag] = useState(true);
+    const [roomId, setRoomId] = useState("");
+    const [namer, setnamer]= useState("");
 
     useEffect(()=>{
 
@@ -62,6 +65,7 @@ function Friends(props){
                 console.log(error);
             }
         }
+
 
 
 
@@ -147,8 +151,25 @@ function Friends(props){
     }
 
     let flagChatbox = false;
-    const toggleChatbox = () => {
+    const toggleChatbox = async(e) => {
+        e.preventDefault();
         flagChatbox = !document.getElementById("chatbox").classList.toggle("disable-sth",flagChatbox);
+        console.log(prof.phone_no);
+        console.log(phone_number);
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/getRoomId",
+                {
+                    u_phone_no:phone_number,
+                    f_phone_no:prof.phone_no
+                }
+            )
+
+            console.log(response.data.x);
+            setRoomId(response.data.x);
+        }catch(error){
+            console.log(error);
+        }
     };
 
     return (
@@ -510,7 +531,7 @@ function Friends(props){
                         </div>
                     </div>
                 </div>
-                <ChatBox flagChatbox={flagChatbox} toggleChatbox={toggleChatbox}/>
+                <ChatBox flagChatbox={flagChatbox} toggleChatbox={toggleChatbox} roomId = {roomId} name={name}/>
             </div>
         </div>
     );

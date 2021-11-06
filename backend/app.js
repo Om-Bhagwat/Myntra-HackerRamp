@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 
 
 const path = require('path')
@@ -16,6 +17,7 @@ const dummyRoute = require("./routes/dummy");
 
 
 const app = express()
+app.use(cors())
 
 app.use(express.json())
 // app.use(userRouter)
