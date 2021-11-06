@@ -4,6 +4,7 @@ const slug = require('mongoose-slug-generator');
 mongoose.plugin(slug);
 const Product = require('../models/Product');
 
+
 // const userSchema = new mongoose.Schema({
 //   name: {
 //     type: String,
@@ -28,6 +29,8 @@ const Product = require('../models/Product');
 //     default: Date.now(),
 //   },
 // });
+
+
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -97,6 +100,7 @@ const userSchema = new mongoose.Schema({
   ],
   slug: { type: String, slug: 'phone_no', unique: true, slug_padding_size: 2 }
 });
+
 
 
 

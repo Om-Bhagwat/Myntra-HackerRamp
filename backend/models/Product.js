@@ -36,6 +36,24 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: 'placeholder.jpg',
   },
+//  likes: {
+//    type: Number,
+//    default: 0,
+//  },
+//  unlikes: {
+//    type: Number,
+//    default: 0,
+//  },
+  //rateproduct: {
+  //  type: Number,
+  //  default: 0,
+  //},
+  //comments: [
+  //  {
+  //    type: mongoose.Schema.Types.ObjectId,
+  //    ref: 'Comment',
+  //  },
+  //],
   slug: { type: String, slug: 'p_id', unique: true, slug_padding_size: 2 },
 });
 

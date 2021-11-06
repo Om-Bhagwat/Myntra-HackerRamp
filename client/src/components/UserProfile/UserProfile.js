@@ -1,8 +1,36 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import axios from "axios";
 
 import "./UserProfile.css";
 
-function UserProfile(){
+function UserProfile(props){
+
+    const {
+        phone_number,
+    } = props;
+
+    const [overallProfile, setoverallProfile] = useState([]);
+
+    useEffect(()=>{
+
+        async function Load_Profile(){
+            try{
+                const response = await axios.post(
+                    "http://localhost:3003/api/user/getuser",
+                    {
+                        phone_no : phone_number
+                    }
+                )
+    
+                console.log(response);
+                setoverallProfile(response.data.user1[0]);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        Load_Profile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     return(
         <div>
@@ -70,21 +98,85 @@ function UserProfile(){
                                     <h6>Hint Name</h6>
                                 </div>
                                 <div className="col-xs-6 col-md-6">
-                                    <h6>Om Bhagwat</h6>
-                                    <br></br>
-                                    <h6>9920028822</h6>
-                                    <br></br>
-                                    <h6>omtest@test.com</h6>
-                                    <br></br>
-                                    <h6>MALE</h6>
-                                    <br></br>
+                                    {overallProfile.name ? (
+                                        <>
+                                            <h6>{overallProfile.name}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
+                                    {overallProfile.phone_no ? (
+                                        <>
+                                            <h6>{overallProfile.phone_no}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
+                                    {overallProfile.email ? (
+                                        <>
+                                            <h6>{overallProfile.email}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
+                                    {overallProfile.gender ? (
+                                        <>
+                                            <h6>{overallProfile.gender}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
+                                    {overallProfile.Dob ? (
+                                        <>
+                                            <h6>{overallProfile.Dob}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
                                     <h6>- not added -</h6>
                                     <br></br>
-                                    <h6>- not added -</h6>
-                                    <br></br>
-                                    <h6>- not added -</h6>
-                                    <br></br>
-                                    <h6>- not added -</h6>
+                                    {overallProfile.alt_phone_no ? (
+                                        <>
+                                            <h6>{overallProfile.alt_phone_no}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
+                                    {overallProfile.hint_name ? (
+                                        <>
+                                            <h6>{overallProfile.hint_name}</h6>
+                                            <br></br>
+                                        </>
+                                    ):(
+                                        <>
+                                            <h6>- not added -</h6>
+                                            <br></br>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
