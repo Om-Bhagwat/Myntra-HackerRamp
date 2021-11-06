@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const slug = require('mongoose-slug-generator');
 mongoose.plugin(slug);
 const Product = require('../models/Product');
@@ -89,8 +90,10 @@ const userSchema = new mongoose.Schema({
   ],
   frienlist: [
     {
-      type: String
-    },
+      f_no:String,
+      room_id:String
+
+    }
   ],
   slug: { type: String, slug: 'phone_no', unique: true, slug_padding_size: 2 }
 });

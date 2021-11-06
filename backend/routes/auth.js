@@ -5,6 +5,7 @@ const Product = require('../models/Product');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
+const uuid = require('uuid');
 
 //const Product = require('../models/product');
 
@@ -131,8 +132,11 @@ router.post('/AcceptFriendReq', async (req, res) => {
       .status(400)
       .send({ error: "Phn no is incorrect." });
   try {
-    user.frienlist.push(req.body.f_phone_no)
-    user2.frienlist.push(req.body.u_phone_no)
+    var x=uuid.v4();
+    // user.frienlist.push(req.body.f_phone_no)
+    // user2.frienlist.push(req.body.u_phone_no)
+    user.frienlist.push({f_no:req.body.f_phone_no,room_id:x})
+    user2.frienlist.push({f_no:req.body.u_phone_no,room_id:x})
     user.pending_request.pull(req.body.f_phone_no)
     const new_user2 = await user2.save(); 
     const new_user = await user.save(); res.status(201).send({ user })
@@ -278,7 +282,7 @@ router.post('/allFriends', async (req, res) => {
   // }
   for (let i = 0; i < arr.length; i++) {
 
-    var user2 = await User.find({ phone_no: arr[i] })
+    var user2 = await User.find({ phone_no: arr[i].f_no })
     arr2.push(user2[0])
 
   }
@@ -316,7 +320,7 @@ router.post('/allPendingReq', async (req, res) => {
   // }
   for (let i = 0; i < arr.length; i++) {
 
-    var user2 = await User.find({ phone_no: arr[i] })
+    var user2 = await User.find({ phone_no: arr[i].f_no })
     arr2.push(user2[0])
 
   }
