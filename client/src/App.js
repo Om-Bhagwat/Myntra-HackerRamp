@@ -57,7 +57,7 @@ function App() {
                     </Route>
                     <Route path="/profile" exact>
                         <Navbar token = { token } onLogout = {onLogout}/>
-                        <UserProfile />
+                        <UserProfile phone_number={phone_number} />
                     </Route>
                     <Route path = "/friends" exact>
                         <Navbar token = {token} onLogout = {onLogout}/>
