@@ -1,0 +1,149 @@
+
+#chatbox {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 350px;
+	height: 400px;
+	/* border: red solid 2px; */
+	box-shadow: 0 0 10px 0px grey;
+	background-color: #f7fbfc;
+	border-radius: 15px;
+}
+
+/* ! -------- chatbox head -------- ! */
+
+.chatbox-head {
+	background-color: #fd6589;
+	width: 100%;
+	height: 55px;
+	border-radius: 15px;
+	padding: 10px;
+	color: white;
+	font-family: "Montserrat";
+	margin: 0;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	border: #f7fbfc solid 3px;
+}
+
+.chatbox-head .user {
+	/* border: white solid 1px; */
+	width: 250px;
+	height: 100%;
+	display: flex;
+
+}
+
+.chatbox-head .user .chat-pic {
+	height: 30px;
+	width: 30px;
+	margin: auto 5px;
+	background-color: gold;
+	border: white solid 2px;
+    border-radius: 50%;
+	cursor: pointer;
+}
+
+.chatbox-head .user .chat-name {
+	margin: auto 5px;
+	font-weight: 500;
+	font-size: 1.7rem;
+	cursor: pointer;
+}
+
+.chatbox-head .chat-options {
+	/* border: white solid 1px; */
+	width: 80px;
+	height: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+}
+.chatbox-head .chat-options .block {
+	height: 20px;
+	width: 20px;
+	margin: auto 5px;
+	cursor: pointer;
+}
+.chatbox-head .chat-options .close-chat {
+	height: 25px;
+	width: 25px;
+	margin: auto 5px;
+	cursor: pointer;
+}
+
+/* ! -------- chatbox body -------- ! */
+
+.chatbox-body {
+	padding: 10px;
+	height: 300px;
+	width: 350px;
+	overflow-y: auto;
+}
+
+.chatbox-body .msg {
+	border-radius: 15px;
+	margin-bottom: 10px;
+	padding: 8px 10px;
+	font-family: 'Roboto';
+	max-width: 280px;
+	width: fit-content;
+}
+
+.chatbox-body .sentM {
+	border-bottom-left-radius: 0px;
+	margin-right: auto;
+	background-color: #fd6589;
+	color: white;
+}
+
+.chatbox-body .recievedM {
+	border-bottom-right-radius: 0px;
+	margin-left: auto;
+	background-color: rgb(230, 230, 230);
+}
+
+.sentM div {
+	width: min-content;
+}
+
+/* ! -------- Message Box -------- ! */
+
+.msgbox {
+	height: 45px;
+	border-top: rgb(194, 194, 194) dashed 1px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	/* background-color: aqua; */
+}
+
+.msgbox:focus {
+	border-top: greenyellow solid 1px;
+}
+
+.msgbox #msg-draft {
+	width: 305px;
+	max-width: 305px;
+	height: 45px;
+	background-color: #f7fbfc;
+	border-radius: 15px;
+	padding: 10px;
+	border: none;
+	outline: none;
+}
+
+.msgbox #send-msg-btn {
+	margin: 5px;
+	padding: 5px;
+	width: 35px;
+	height: 35px;
+	min-width: 35px;
+	max-width: 35px;
+	min-height: 35px;
+	max-height: 35px;
+	color: #61cc1f;
+	cursor: pointer;
+}
