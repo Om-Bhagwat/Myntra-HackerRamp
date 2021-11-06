@@ -187,6 +187,24 @@ router.post("/register2", async (req, res) => {
   }
 });
 
+
+
+router.post("'removefromwishlist", async (req, res) => {
+  console.log(req.body);
+  const user = await User.findOne({ phone_no: req.body.phone_no });
+  if (!user)
+    return res
+      .status(400)
+      .send({ error: "Phn no is incorrect." });
+  try {
+    user.wishlist.pull(req.body.product_id)
+    const new_user = await user.save(); res.status(201).send({ user })
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 //router.post("/like", async (req, res) => {
 //  console.log(req.body);
 //  const user = await User.findOne({ phone_no: req.body.phone_no });
@@ -399,62 +417,40 @@ router.post('/allPendingReq', async (req, res) => {
   //   console.log(user2[0])
     
   // }
-  for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
 
-    var user2 = await User.find({ phone_no: arr[i] })
-    arr2.push(user2[0])
+      var user2 = await User.find({ phone_no: arr[i] })
+      arr2.push(user2[0])
 
-  }
-    
-  
+    }
 
-
-
-    res.send({ arr2 })
+  res.send({ arr2 })
   } catch (e) {
     res.status(400).send()
   }
 })
 
 
-// get all friends
-router.post('/allFriends', async (req, res) => {
+// get all products in whislist
+router.post('/allproductsWislist', async (req, res) => {
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
-    const arr=user1[0].frienlist
+    const arr=user1[0].wishlist
 
     var arr2 = []
-    
-    // nietos.push(user1[0])
-  
-  //   arr.forEach(myFunction);
 
+    for (let i = 0; i < arr.length; i++) {
 
-  // async function myFunction(item) {
-  //   var user2 = await User.find({ phone_no: item })
-  
-  //   await nietos.push(user2[0])
-  //   console.log(user2[0])
-    
-  // }
-  for (let i = 0; i < arr.length; i++) {
+      var user2 = await Product.find({ p_id: arr[i] })
+      arr2.push(user2[0])
 
-    var user2 = await User.find({ phone_no: arr[i] })
-    arr2.push(user2[0])
-
-  }
-    
-  
-
-
-
-    res.send({ arr2 })
+    }
+  res.send({ arr2 })
   } catch (e) {
     res.status(400).send()
   }
 })
-
 
 
 // get user
