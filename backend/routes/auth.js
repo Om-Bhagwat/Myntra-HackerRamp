@@ -432,7 +432,7 @@ router.post('/allPendingReq', async (req, res) => {
 
 
 // get all products in whislist
-router.post('/allproductsWislist', async (req, res) => {
+router.post('/allproductsWishlist', async (req, res) => {
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
