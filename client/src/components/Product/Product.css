@@ -63,6 +63,13 @@
 .wishlist-btn:hover {
     color: #ff3f6c;
 }
+.wishlist-btn:active {
+    color: #000;
+}
+
 .buy-btn:hover {
     color: #ff3f6c;
+}
+.buy-btn:active {
+    color: #000;
 }

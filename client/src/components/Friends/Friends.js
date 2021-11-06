@@ -3,10 +3,11 @@ import ReactStars from "react-rating-stars-component";
 import axios from "axios";
 // import { render } from "react-dom";
 
+// css imports
 import "./Friends.css";
 
 // componenet imports
-import ChatBox from "../chatbox/Chatbox";
+import ChatBox from "../Chatbox/Chatbox";
 import CompanyLogo from "../../img/myntraLogo.png";
 import { FaUserPlus, FaSearch } from "react-icons/fa";
 
