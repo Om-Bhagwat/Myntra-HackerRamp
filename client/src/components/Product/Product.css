@@ -1,23 +1,58 @@
 .products{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .oppa{
-    background-color: aliceblue;
+    background-color: #f7fbfc;
     margin:20px;
     text-align: center;
     height: 35rem;
+    width: 28rem;
+}
+
+.oppa:hover {
+    box-shadow: 0 0 16px 0px rgb(207, 207, 207);
 }
 
 .oppa img{
     height: 23rem;
-    
+    width: 18rem;
 }
 
 .oppa div{
     margin:13px;
     text-align: left;
+}
+
+
+.btn-box {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+}
+
+.card-btn {
+    background-color: transparent;
+    padding: 4px;
+    margin: 0 5px 10px 5px;
+    font-family: Roboto;
+    font-weight: 600;
+}
+
+.card-btn * {
+    height: fit-content;
+    margin: auto 2px;
+    padding: 2px;
+    height: 20px;
+    width: 20px;
+}
+
+.wishlist-btn {
+}
+.buy-btn {
 }
