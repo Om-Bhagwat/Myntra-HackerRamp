@@ -450,13 +450,8 @@ router.post('/allPendingReq', async (req, res) => {
 })
 
 
-<<<<<<< HEAD
-// get all products in whislist
-router.post('/allproductsWishlist', async (req, res) => {
-=======
 // get all friends
 router.post('/allFriends', async (req, res) => {
->>>>>>> a8be9abf3527dd92acacfa1597b304e319b5857a
 
   try {
     const user1 = await User.find({ phone_no: req.body.phone_no })
