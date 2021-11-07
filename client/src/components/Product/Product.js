@@ -9,9 +9,12 @@ import "./Product.css";
 import { FaHeart } from "react-icons/fa";
 import { BsFillBagPlusFill } from "react-icons/bs";
 
-function Product(){
+function Product(props){
 
-    
+    const {
+        phone_number
+    } = props;
+
     const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
 
@@ -43,6 +46,24 @@ function Product(){
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
+    const addToWishlist = async(e, idy) => {
+        e.preventDefault();
+        console.log(idy);
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/addtowishlist",
+                {
+                    phone_no : phone_number,
+                    product_id : idy
+                }
+            )
+
+            console.log(response);
+        }catch(error){
+            console.log(error);
+        }
+    };
 
 
     return(
@@ -76,7 +97,7 @@ function Product(){
                                     </span>
                                 </p>
                                 <div className="btn-box">
-                                    <button className="card-btn wishlist-btn">
+                                    <button className="card-btn wishlist-btn" onClick={(e)=>addToWishlist(e, pr.p_id)}>
                                         <FaHeart />
                                         Favourite
                                     </button>

@@ -29,7 +29,6 @@ function Friends(props){
     const [prof, setprof] = useState([]);
     const [flag ,setFlag] = useState(true);
     const [roomId, setRoomId] = useState("");
-    const [namer, setnamer]= useState("");
 
     useEffect(()=>{
 
