@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Blog = require('../models/Blog');
+const tempProduct= require('../models/TempProduct');
 const Product = require('../models/Product');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
 const uuid = require('uuid');
+//const temporaryProductSchema = require('../models/tempararyProductSchema');
 
 //const Product = require('../models/product');
 
@@ -36,27 +38,9 @@ const upload = multer({
   },
 });
 
-router.post('/upload', upload.single('image'), async (request, response) => {
-  console.log(request.file);
-  // console.log(request.body);
-  let blog = new Blog({
-    title: request.body.title,
-    author: request.body.author,
-    description: request.body.description,
-    img: request.file.filename,
-  });
+// USER ROUTES 
 
-  try {
-    blog = await blog.save();
-
-    response.status(201).send({ blog })
-
-    //   return response.status(201)
-
-  } catch (error) {
-    console.log(error);
-  }
-});
+// upload picture of user
 
 router.post('/upload2', upload.single('image'), async (req, res) => {
   console.log(req.file);
@@ -79,6 +63,8 @@ router.post('/upload2', upload.single('image'), async (req, res) => {
     user.img = req.file.filename
     const new_user = await user.save();
 
+    console.log(req.file.filename)
+
     res.status(201).send({ user })
 
     //   return response.status(201)
@@ -89,21 +75,88 @@ router.post('/upload2', upload.single('image'), async (req, res) => {
 });
 
 
-router.post('/addtowishlist', async (req, res) => {
+
+
+// register
+router.post("/register2", async (req, res) => {
   console.log(req.body);
+
+  const emailExist = await User.findOne({ phone_no: req.body.phone_no });
+  if (emailExist)
+    return res
+      .status(400)
+      .send({ error: "phn already exists" });
+
+  //hash
+  const salt = await bcrypt.genSalt(10);
+  const hashPass = await bcrypt.hash(req.body.password, salt);
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    phone_no: req.body.phone_no,
+    gender: req.body.gender,
+    alt_phone_no: req.body.alt_phone_no,
+    hint_name: req.body.hint_name,
+    password: hashPass,
+  });
+  try {
+    const savedUser = await user.save();
+    const token = jwt.sign({
+      _id: savedUser._id,
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
+    }, process.env.TOKEN_SECRET);
+
+    return res
+      .status(200)
+      .header("auth-token", token)
+      .send({ user, error: null, token: token });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(400)
+      .send({ error: "Not available at the moment", success: "false" });
+  }
+});
+
+
+
+
+// login 2
+
+router.post("/login2", async (req, res) => {
+  console.log(req.body);
+
+
   const user = await User.findOne({ phone_no: req.body.phone_no });
   if (!user)
     return res
       .status(400)
-      .send({ error: "Phn no is incorrect." });
-  try {
-    user.wishlist.push(req.body.product_id)
-    const new_user = await user.save(); res.status(201).send({ user })
-    return response.status(201)
-  } catch (error) {
-    console.log(error);
-  }
+      .send({ error: "Phone number or Password is incorrect." });
+
+  //hash
+  const ValidPass = await bcrypt.compare(req.body.password, user.password);
+  if (!ValidPass)
+    return res
+      .status(400)
+      .send({ error: "Phone number or Password is incorrect." });
+
+  // token
+  const token = jwt.sign({
+    _id: user._id,
+    exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
+  }, process.env.TOKEN_SECRET);
+  // }, "thisisyo");
+
+
+  return res
+    .status(200)
+    .header("auth-token", token)
+    .send({ error: null, token: token });
 });
+
+
+
+
 
 
 
@@ -152,165 +205,6 @@ router.post('/AcceptFriendReq', async (req, res) => {
  
 
 
-
-router.post("/register2", async (req, res) => {
-  console.log(req.body);
-
-  const emailExist = await User.findOne({ phone_no: req.body.phone_no });
-  if (emailExist)
-    return res
-      .status(400)
-      .send({ error: "phn already exists" });
-
-  //hash
-  const salt = await bcrypt.genSalt(10);
-  const hashPass = await bcrypt.hash(req.body.password, salt);
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    phone_no: req.body.phone_no,
-    gender: req.body.gender,
-    alt_phone_no: req.body.alt_phone_no,
-    hint_name: req.body.hint_name,
-    password: hashPass,
-  });
-  try {
-    const savedUser = await user.save();
-    const token = jwt.sign({
-      _id: savedUser._id,
-      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
-    }, process.env.TOKEN_SECRET);
-
-    return res
-      .status(200)
-      .header("auth-token", token)
-      .send({ user, error: null, token: token });
-  } catch (err) {
-    console.log(err);
-    return res
-      .status(400)
-      .send({ error: "Not available at the moment", success: "false" });
-  }
-});
-
-//router.post("/like", async (req, res) => {
-//  console.log(req.body);
-//  const user = await User.findOne({ phone_no: req.body.phone_no });
-//  if (!user)
-//    return res
-//      .status(400)
-//      .send({ error: "Phn no is incorrect." });
-//  try {
-//    user.likes.push(req.body.product_id)
-//    const new_user = await user.save(); res.status(201).send({ user })
-//    return response.status(201)
-//  } catch (error) {
-//    console.log(error);
-//  }
-//});
-//
-//router.post("/unlike", async (req, res) => {
-//  console.log(req.body);
-//  const user = await User.findOne({ phone_no: req.body.phone_no });
-//  if (!user)
-//    return res
-//      .status(400)
-//      .send({ error: "Phn no is incorrect." });
-//  try {
-//    user.likes.pull(req.body.product_id)
-//    const new_user = await user.save(); res.status(201).send({ user })
-//    return response.status(201)
-//  } catch (error) {
-//    console.log(error);
-//  }
-//});
-//
-//router.get("/percentagelikes", async (req, res) => {
-//  console.log(req.body);
-//  const user = await User.findOne({ phone_no: req.body.phone_no });
-//  if (!user)
-//    return res
-//      .status(400)
-//      .send({ error: "Phn no is incorrect." });
-//  try {
-//    const product = await Product.findOne({ _id: req.body.product_id })
-//    const likes = product.likes.length
-//    const total = product.likes.length + product.dislikes.length
-//    const percentage = (likes / total) * 100
-//    res.status(201).send({ percentage })
-//    return response.status(201)
-//  } catch (error) {
-//    console.log(error);
-//  }
-//});
-//
-////route.post("/commentonproduct", async (req, res) => {
-////  console.log(req.body);
-////  const user = await User.findOne({ phone_no: req.body.phone_no });
-////  if (!user)
-////    return res
-////      .status(400)
-////      .send({ error: "Phn no is incorrect." });
-////  try {
-////    user.comments.push(req.body.product_id)
-////    const new_user = await user.save(); res.status(201).send({ user })
-////    return response.status(201)
-////  } catch (error) {
-////    console.log(error);
-////  }
-////});
-//
-//route.post("/rateproduct", async (req, res) => {
-//  console.log(req.body);
-//  const user = await User.findOne({ phone_no: req.body.phone_no });
-//  if (!user)
-//    return res
-//      .status(400)
-//      .send({ error: "Phn no is incorrect." });
-//  try {
-//    user.rated_products.push(req.body.product_id)
-//    const new_user = await user.save(); res.status(201).send({ user })
-//    return response.status(201)
-//  } catch (error) {
-//    console.log(error);
-//  }
-//});
-//
-//
-// login 2
-
-router.post("/login2", async (req, res) => {
-  console.log(req.body);
-
-
-  const user = await User.findOne({ phone_no: req.body.phone_no });
-  if (!user)
-    return res
-      .status(400)
-      .send({ error: "Phone number or Password is incorrect." });
-
-  //hash
-  const ValidPass = await bcrypt.compare(req.body.password, user.password);
-  if (!ValidPass)
-    return res
-      .status(400)
-      .send({ error: "Phone number or Password is incorrect." });
-
-  // token
-  const token = jwt.sign({
-    _id: user._id,
-    exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7),
-  }, process.env.TOKEN_SECRET);
-  // }, "thisisyo");
-
-
-  return res
-    .status(200)
-    .header("auth-token", token)
-    .send({ error: null, token: token });
-});
-
-
 // upload product details
 router.post("/productUpload", upload.single('image'), async (req, res) => {
 
@@ -355,18 +249,7 @@ router.post('/allFriends', async (req, res) => {
 
     var arr2 = []
     
-    // nietos.push(user1[0])
-  
-  //   arr.forEach(myFunction);
-
-
-  // async function myFunction(item) {
-  //   var user2 = await User.find({ phone_no: item })
-  
-  //   await nietos.push(user2[0])
-  //   console.log(user2[0])
-    
-  // }
+ 
   for (let i = 0; i < arr.length; i++) {
 
     var user2 = await User.find({ phone_no: arr[i].f_no })
@@ -452,43 +335,6 @@ router.post('/allPendingReq', async (req, res) => {
 })
 
 
-// get all friends
-router.post('/allFriends', async (req, res) => {
-
-  try {
-    const user1 = await User.find({ phone_no: req.body.phone_no })
-    const arr=user1[0].frienlist
-
-    var arr2 = []
-    
-    // nietos.push(user1[0])
-  
-  //   arr.forEach(myFunction);
-
-
-  // async function myFunction(item) {
-  //   var user2 = await User.find({ phone_no: item })
-  
-  //   await nietos.push(user2[0])
-  //   console.log(user2[0])
-    
-  // }
-  for (let i = 0; i < arr.length; i++) {
-
-    var user2 = await User.find({ phone_no: arr[i] })
-    arr2.push(user2[0])
-
-  }
-    
-  
-
-
-
-    res.send({ arr2 })
-  } catch (e) {
-    res.status(400).send()
-  }
-})
 
 
 
@@ -526,6 +372,44 @@ router.post('/getnames', async (req, res) => {
       res.status(400).send()
   }
 })
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//  Routes related to Product
+
+// add to wishlist
+router.post('/addtowishlist', async (req, res) => {
+  console.log(req.body);
+  const user = await User.findOne({ phone_no: req.body.phone_no });
+  if (!user)
+    return res
+      .status(400)
+      .send({ error: "Phn no is incorrect." });
+  try {
+    user.wishlist.push(req.body.product_id)
+    const new_user = await user.save(); res.status(201).send({ user })
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// remove from wishlist
+router.post("'removefromwishlist", async (req, res) => {
+  console.log(req.body);
+  const user = await User.findOne({ phone_no: req.body.phone_no });
+  if (!user)
+    return res
+      .status(400)
+      .send({ error: "Phn no is incorrect." });
+  try {
+    user.wishlist.pull(req.body.product_id)
+    const new_user = await user.save(); res.status(201).send({ user })
+    return response.status(201)
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 
 // get product
@@ -556,22 +440,7 @@ router.get('/getAllproduct', async (req, res) => {
 })
 
 
-// remove from freindlist
-router.post("'removefromwishlist", async (req, res) => {
-  console.log(req.body);
-  const user = await User.findOne({ phone_no: req.body.phone_no });
-  if (!user)
-    return res
-      .status(400)
-      .send({ error: "Phn no is incorrect." });
-  try {
-    user.wishlist.pull(req.body.product_id)
-    const new_user = await user.save(); res.status(201).send({ user })
-    return response.status(201)
-  } catch (error) {
-    console.log(error);
-  }
-});
+
 
 // users wish list
 router.post('/allproductsWishlist', async (req, res) => {
@@ -594,9 +463,162 @@ router.post('/allproductsWishlist', async (req, res) => {
   }
 })
 
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+// All routes for swipe
+
+// selecting random products
+router.get('/PushRandom', async (req, res) => {
+
+  var arr=[]
+
+  let temp_product = new tempProduct({
+    id:"1"
+  })
+
+  try {
+    const product1 = await Product.find({})
+
+    for (let i = 0; i < 3; i++) {
+
+      
+      arr.push(product1[i]);
+      temp_product.products.push({
+        p_id:product1[i].p_id,
+        count:0
+      })
+
+    }
+    
+    await temp_product.save()
+
+    res.send({temp_product})
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+// route to show  random products in default manner
+
+router.get('/showRandom', async (req, res) => {
+
+ 
+
+  try {
+    const product1 = await tempProduct.find({})
+
+    const arr=product1[0].products
+    var arr2 = []
+    
+ 
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await Product.find({ p_id: arr[i].p_id })
+    arr2.push(user2[0])
+
+  }
+    
+ 
+    
+   
+
+    res.send({arr2})
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
+// route to like product
+    
+router.post('/likeProduct', async (req, res) => {
+
+  try {
+    const temp_product = await tempProduct.findOne({ id:"1" })
+    
+    // var x=temp_product.products
+
+    for(let i=0;i<temp_product.products.length;i++){
+
+      if(temp_product.products[i].p_id==req.body.p_id){
+        temp_product.products[i].count+=1
+        // temp_product.products.p_
+      }
+
+    }
+
+    await temp_product.save()
+    
+  res.send({ temp_product})
+  } catch (e) {
+    console.log(e)
+    res.status(400).send()
+  }
+})
+
+router.post('/dislikeProduct', async (req, res) => {
+
+  try {
+    const temp_product = await tempProduct.findOne({ id:"1" })
+    
+    // var x=temp_product.products
+
+    for(let i=0;i<temp_product.products.length;i++){
+
+      if(temp_product.products[i].p_id==req.body.p_id){
+        temp_product.products[i].count-=1
+        // temp_product.products.p_
+      }
+
+    }
+
+    await temp_product.save()
+    
+  res.send({ temp_product})
+  } catch (e) {
+    console.log(e)
+    res.status(400).send()
+  }
+})
 
 
+router.get('/showSorted', async (req, res) => {
 
+ 
+
+  try {
+    const product1 = await tempProduct.find({})
+
+    const arr=product1[0].products
+    function compare( a, b ) {
+      if ( a.count > b.count ){
+        return -1;
+      }
+      if ( a.count < b.count ){
+        return 1;
+      }
+      return 0;
+    }
+    
+    arr.sort( compare );
+    var arr2 = []
+    
+ 
+  for (let i = 0; i < arr.length; i++) {
+
+    var user2 = await Product.find({ p_id: arr[i].p_id })
+    arr2.push(user2[0])
+
+  }
+    
+ 
+    
+   
+
+    res.send({arr2})
+  } catch (e) {
+    res.status(400).send()
+  }
+})
 
 
 module.exports = router;

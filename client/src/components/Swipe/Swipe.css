@@ -1,0 +1,191 @@
+#swipe-container {
+    min-height: 500px;
+    width: calc(100vw - 60px);
+    margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+/* ! ---- Left Panel ---- ! */
+
+#swipe-panel {
+    width: 58%;
+    min-width: 300px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 5px;
+	overflow-x: hidden;
+}
+
+#swipe-panel .image0 {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#swipe-panel .image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#swipe-panel .image2 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.swipe-title,
+.use {
+    width: 100%;
+    height: 13%;
+    background-color: rgba(1, 1, 1, 0.12);
+    padding: 10px 10px;
+    border: none;
+    margin: 0;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+
+.swipe-title {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.07),
+        rgba(0, 0, 0, 0)
+    );
+    font-family: "Montserrat";
+    font-size: 1.8rem;
+    line-height: 30px;
+}
+
+.use {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.07),
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.7)
+    );
+    font-family: Roboto;
+    color: rgb(255, 207, 167);
+    padding-top: 20px;
+    line-height: 50px;
+    word-spacing: 9px;
+	visibility: visible;
+}
+
+#swipe-panel:hover + .use {
+	visibility: visible;
+}
+
+.disliked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+}
+
+.disliked:active {
+    background: linear-gradient(
+        to left,
+        rgba(32, 32, 32, 0),
+        rgba(32, 32, 32, 0.2)
+    );
+}
+
+.liked {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+}
+
+.liked:active {
+    background: linear-gradient(
+        to right,
+        rgba(32, 32, 32, 0),
+        rgba(32, 32, 32, 0.2)
+    );
+}
+
+/* ! ---- Right Panel ---- ! */
+
+#swipe-list {
+    /* border: blue solid 2px; */
+    width: 38%;
+    min-width: 300px;
+    height: 500px;
+    background-color: white;
+    border: rgb(214, 214, 214) solid 1px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#swipe-list h4 {
+    font-family: "Montserrat";
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    color: #ff3f6c;
+}
+
+.rank-list {
+    height: 456px;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.rank-item {
+    width: 95%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 10px;
+}
+
+.rank-item:hover {
+    box-shadow: 0 0 10px 4px rgb(218, 218, 218);
+}
+
+.rank-item img {
+    height: 120px;
+    width: 100px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.rank-item h6 {
+    font-family: Roboto;
+    font-size: 1.7rem;
+    text-overflow: ellipsis;
+}

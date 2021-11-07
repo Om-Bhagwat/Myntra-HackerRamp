@@ -36,10 +36,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: 'placeholder.jpg',
   },
-//  likes: {
-//    type: Number,
-//    default: 0,
-//  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
 //  unlikes: {
 //    type: Number,
 //    default: 0,

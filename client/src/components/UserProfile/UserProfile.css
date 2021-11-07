@@ -28,9 +28,43 @@
     width:100px;
     border-radius: 50%;
     background-color: yellow;
+    /* background-image: img/1636176816024air-jordan-3-retro-shoe.jpg`; */
     margin-bottom: 10px;
 }
 
+#new_pic {
+    width: 100px;
+    height: 100px;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+#new_pic:hover {
+    background-color: rgba(1, 1, 1, 0.4);
+}
+
+#new_pic::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#new_pic::before {
+    vertical-align: middle;
+    content: '\t\n\n New Pic';
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    /* border: black solid 1px; */
+    white-space: nowrap;
+    /* -webkit-user-select: none; */
+}
 
 .cont{
     display: flex;

@@ -18,6 +18,8 @@ function Product(props){
     const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
 
+    
+
 
 
     useEffect(()=>{
@@ -38,11 +40,10 @@ function Product(props){
             }
         }
 
- 
-
-
-
+        
         Load_Products();
+
+
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
@@ -76,16 +77,14 @@ function Product(props){
             <>
                 {product.map((pr)=>{
                     return (
-                        <div className="card oppa">
+                        <div className="product-card">
                             <img
                                 className="card-img-top"
                                 src={`./img/${pr.img}`}
                                 alt="Card image cap"
                             />
                             <div className="card-body">
-                                <h5 className="card-title">
-                                    <strong>{pr.p_name}</strong>
-                                </h5>
+                                <h5 className="card-title"><strong>{pr.p_name}</strong></h5>
                                 <p className="card-text">{pr.p_brand}</p>
                                 <p className="card-text">
                                     <strong>Rs {pr.p_dis_price}</strong>
@@ -97,13 +96,17 @@ function Product(props){
                                     </span>
                                 </p>
                                 <div className="btn-box">
-                                    <button className="card-btn wishlist-btn" onClick={(e)=>addToWishlist(e, pr.p_id)}>
-                                        <FaHeart />
-                                        Favourite
+                                    <button className="card-btn wishlist-btn">
+                                        <FaHeart className="cardbtn-icons"/>
+                                        <span>
+                                            Favourite
+                                        </span>
                                     </button>
                                     <button className="card-btn buy-btn">
-                                        <BsFillBagPlusFill />
-                                        Buy
+                                        <BsFillBagPlusFill className="cardbtn-icons"/>
+                                        <span>
+                                            Buy
+                                        </span>
                                     </button>
                                 </div>
                             </div>

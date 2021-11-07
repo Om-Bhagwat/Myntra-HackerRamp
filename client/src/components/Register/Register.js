@@ -1,7 +1,7 @@
 
 //react imports
 import React from "react";
-import {Link, useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../Navbar/Navbar";
