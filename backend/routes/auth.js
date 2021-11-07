@@ -319,7 +319,7 @@ router.post('/allPendingReq', async (req, res) => {
 
   for (let i = 0; i < arr.length; i++) {
 
-    var user2 = await User.find({ phone_no: arr[i].f_no })
+    var user2 = await User.find({ phone_no: arr[i] })
     arr2.push(user2[0])
 
   }

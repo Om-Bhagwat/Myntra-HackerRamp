@@ -29,6 +29,7 @@ function App() {
   const [ alternateName , setAlternateName ] = useState("");
 
 
+  //load Phone number and JWT token from localStorage.
   useEffect(()=>{
     const localToken = localStorage.getItem("token");
     const phoneToken = localStorage.getItem("phone_number");
@@ -37,6 +38,7 @@ function App() {
       setPhone_Number(phoneToken);
     }
 
+    //load user details
     async function Load_name(){
       try{
           const response = await axios.post(
@@ -55,6 +57,7 @@ function App() {
   Load_name();
   },[])
 
+  //function to help user Logout.
   function onLogout(){
     localStorage.removeItem("token");
     localStorage.removeItem("phone_number");
