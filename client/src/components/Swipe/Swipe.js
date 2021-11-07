@@ -4,14 +4,7 @@ import axios from "axios";
 // css imports
 import "./Swipe.css";
 
-<<<<<<< HEAD
 const Slider = (props) => {
-	// const swipeRight = () => {
-	// 	document.getElementById("swipe-panel").
-	// }
-=======
-const Slider = () => {
->>>>>>> 11beee6ebc03b30729bd069a046024a57d1e4209
 
 	const animateSwipe = () => {
 		let pos = 100;
