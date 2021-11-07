@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
 const uuid = require('uuid');
-const temporaryProductSchema = require('../models/tempararyProductSchema');
+//const temporaryProductSchema = require('../models/tempararyProductSchema');
 
 //const Product = require('../models/product');
 
