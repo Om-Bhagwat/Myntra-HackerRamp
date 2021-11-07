@@ -6,6 +6,14 @@ const Slider = () => {
 	// 	document.getElementById("swipe-panel").
 	// }
 
+	// document.querySelector('.box').addEventListener('click', function () {
+	// 	this.scroll({
+	// 		left: 0,
+	// 		top: 0,
+	// 		behavior: 'smooth'
+	// 	})
+	// });
+
 	return (
 		<div id="swipe-container">
 
