@@ -185,9 +185,9 @@ function Friends(props){
                             {listOfFriends.map((friend)=>{
                                 return(
                                     <div className="friends_box">
-                                        <div className="friend-list-pic"></div>
-                                        <div className="info_tab" onClick={(e)=>load_Name(e,friend.phone_no)}>
-                                            <h6>{friend.name}</h6>
+                                        <div className="friend-list-pic" onClick={(e)=>load_Name(e,friend.phone_no)}></div>
+                                        <div className="info_tab" >
+                                            <h6 onClick={(e)=>load_Name(e,friend.phone_no)}>{friend.name}</h6>
                                             <p>5 Mutual Friends</p>
                                         </div>
                                     </div>
@@ -208,11 +208,7 @@ function Friends(props){
                                     <div className="friends_box">
                                         <div className="friend-list-pic"></div>
                                         <div className="info_tab">
-                                            <h6>
-                                                {/* <Link to="localhost:3003/profile/:id"> */}
-                                                {req.name}
-                                                {/* </Link> */}
-                                            </h6>
+                                            <h6>{req.name}</h6>
                                             <p onClick={(e)=>accept_Request(e,req.phone_no)}>
                                                 Accept Request
                                             </p>

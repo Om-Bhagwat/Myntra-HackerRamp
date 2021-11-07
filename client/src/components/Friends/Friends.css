@@ -51,6 +51,7 @@
     background-color: turquoise;
     height:64px;
     width:64px;
+    cursor: pointer;
 }
 
 .info_tab{
@@ -64,6 +65,7 @@
     font-size: 2rem;
     font-weight: 400;
     margin: 8px 0;
+    cursor: pointer;
 }
 
 .info_tab p {
@@ -370,6 +372,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     margin: 0 0 5px 0;
+    cursor: pointer;
 }
 
 .card_right .card-brand {

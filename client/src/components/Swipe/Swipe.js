@@ -12,14 +12,19 @@ const Slider = (props) => {
 		let img0 = document.querySelector('.image0');
 		let img1 = document.querySelector('.image1');
 		let img2 = document.querySelector('.image2');
+		let use = document.querySelector(".use");
+		use.style.color = "#fff";
+		use.style.fontSize = "1.8rem";
 		if (likeType === "like") {
-			document.querySelector(".use").innerHTML = "<strong>L I K E D</strong>";
+			use.innerHTML = "L I K E D";
 			await rightToLeft();
 		} else {
-			document.querySelector(".use").innerHTML = "<strong>D I S L I K E D</strong>";
+			use.innerHTML = "D I S L I K E D";
 			await leftToRight();
 		}
 		setTimeout(() => {
+			use.style.removeProperty("color");
+			use.style.removeProperty("font-size");
 			document.querySelector(".use").textContent = useTip;
 		}, 700);
 
