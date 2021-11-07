@@ -51,7 +51,7 @@ function UserProfile(props){
                         </div>
                         {/* <button>Edit</button> */}
                     </div>
-                    <div>
+                    <div className="acc-details">
                         <h4><strong>Account</strong></h4>
                         <h6>{overallProfile.name}</h6>
                     </div>

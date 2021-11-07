@@ -291,7 +291,7 @@ function Friends(props){
                 ):(
                     <div className="WishlistNames">
                         <div className="circle_img">
-                            <img src={prof.profile_pic} alt="profile_pic"/>
+                            <img src={`./img/${prof.img}`} alt="profile_pic"/>
                         </div>
                         <div className="in">
                             <h3>{prof.name}</h3>
