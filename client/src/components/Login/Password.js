@@ -24,26 +24,26 @@ function Password(props){
 
     let history = useHistory();
     //function to signIn.
-     const signIn =async(e)=>{
-         e.preventDefault();
+    const signIn =async(e)=>{
+        e.preventDefault();
 
-         try{
-             const response = await axios.post(
-                 "http://localhost:3003/api/user/login2",
-                 {
-                     phone_no : phone_number,
-                     password : password,
-                 }
-             )
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/login2",
+                {
+                    phone_no : phone_number,
+                    password : password,
+                }
+            )
                 console.log(response);
                 localStorage.setItem("token",response.data.token);
                 localStorage.setItem("phone_number",phone_number);
                 setToken(response.data.token);
                 history.push("/");
-         }catch(error){
-             console.log(error);
-         }
-     }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -55,7 +55,7 @@ function Password(props){
                         For additional security, please enter your account password
                     </p>
 
-                    <input type="text" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
+                    <input type="password" required placeholder="Password*" onChange={(e)=>setPassword(e.target.value)} value={password} />
                     <button onClick={signIn} className="loginBtn">LOGIN</button>
                     <h6 className="moreInfo">
                         Have Trouble Logging In ? <span>Get Help</span>
