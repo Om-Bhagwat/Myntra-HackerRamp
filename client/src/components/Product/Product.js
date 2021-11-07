@@ -21,7 +21,7 @@ function Product(props){
     
 
 
-
+    //Function to load All products on Home Screen onLoad.
     useEffect(()=>{
 
         async function Load_Products(){
