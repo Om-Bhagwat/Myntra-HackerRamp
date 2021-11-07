@@ -44,6 +44,8 @@ function UserProfile(props){
                         <div className="photo_cont">
                             {/* <label htmlFor="new_pic" className="new_pic"> */}
                             <input type="file" name="new_pic" id="new_pic" />
+                            <img src={`./img/${overallProfile.img}`} alt="profile_pic" />
+                            {/* </label> */}
                             {/* <span className="file-custom"></span>
                             </label> */}
                         </div>

@@ -205,7 +205,7 @@ function Friends(props){
                                     <div className="friends_box">
                                         <div className="friend-list-pic" onClick={(e)=>load_Name(e,friend.phone_no)}>
                                             <img 
-                                            src="" 
+                                            src={`./img/${friend.img}`}
                                             alt="friend" />
                                         </div>
                                         <div className="info_tab" >
@@ -230,7 +230,7 @@ function Friends(props){
                                     <div className="friends_box">
                                         <div className="friend-list-pic">
                                             <img 
-                                            src="" 
+                                            src={`./img/${req.img}`} 
                                             alt="friend" />
                                         </div>
                                         <div className="info_tab">
@@ -290,7 +290,9 @@ function Friends(props){
                     </>
                 ):(
                     <div className="WishlistNames">
-                        <div className="circle_img"></div>
+                        <div className="circle_img">
+                            <img src={prof.profile_pic} alt="profile_pic"/>
+                        </div>
                         <div className="in">
                             <h3>{prof.name}</h3>
                             <div className="bt">
