@@ -8,7 +8,7 @@ import axios from "axios";
 import "./Friends.css";
 
 // componenet imports
-import ChatBox from "../chatbox/Chatbox";
+import ChatBox from "../Chatbox/Chatbox";
 import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 function Friends(props){

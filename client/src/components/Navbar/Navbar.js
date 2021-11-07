@@ -70,10 +70,12 @@ function Navbar(props){
                             <p>Profile</p>
                         </Link>
                     )}
+                    {/* on futher steps we will add path to wishlist here */}
                     <Link to="/phone_number">
                         <FaHeart />
                         <p>Wishlist</p>
                     </Link>
+                    {/* on futher steps we will add path to bag here */}
                     <Link to="/phone_number">
                         <FaShoppingBag />
                         <p>Bag</p>

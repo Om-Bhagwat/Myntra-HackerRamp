@@ -56,7 +56,7 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
             <div className="chatbox-head">
                 <div className="user">
                     <span className="chat-pic"></span>
-                    <span className="chat-name">Parth Bhardwaj</span>
+                    <span className="chat-name">{name}</span>
                 </div>
                 <div className="chat-options">
                     <FaBan className="block" />
