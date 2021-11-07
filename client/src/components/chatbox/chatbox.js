@@ -1,3 +1,4 @@
+//React imports
 import React ,{useEffect, useState}  from  "react";
 import "./Chatbox.css";
 import io from "socket.io-client";
@@ -5,15 +6,17 @@ import io from "socket.io-client";
 // icon imports
 import { FaTimes, FaPaperPlane, FaBan } from "react-icons/fa";
 
-
+//connect Socket.io from websockets running on localhost:8000.
 let socket;
 
 const CONNECTION_PORT = "localhost:8000/";
 
 const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
+    //hooks to store and display messages.
     const [message, setMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
     
+    //hook to make a connection, send and receive message.
 	useEffect(() => {
 		socket = io(CONNECTION_PORT);
 	}, [CONNECTION_PORT]);

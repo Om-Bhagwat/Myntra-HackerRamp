@@ -1,3 +1,4 @@
+//react imports
 import React , {useState,useEffect} from "react";
 import ReactStars from "react-rating-stars-component";
 import axios from "axios";
@@ -7,8 +8,7 @@ import axios from "axios";
 import "./Friends.css";
 
 // componenet imports
-import ChatBox from "../Chatbox/Chatbox";
-import CompanyLogo from "../../img/myntraLogo.png";
+import ChatBox from "../chatbox/Chatbox";
 import { FaUserPlus, FaSearch } from "react-icons/fa";
 
 function Friends(props){
@@ -30,12 +30,15 @@ function Friends(props){
     const [prof, setprof] = useState([]);
     const [flag ,setFlag] = useState(true);
     const [roomId, setRoomId] = useState("");
-    const [namer, setnamer]= useState("");
+    const [showwishlist, setShowWishlist] = useState({});
+    const [fl ,setf] = useState(true);
 
+    //funtions that load all the pending requests and list of friends on Load.
     useEffect(()=>{
 
         async function Load_request(){
             try{
+                
                 const response = await axios.post(
                     "http://localhost:3003/api/user/allPendingReq",
                     {
@@ -67,10 +70,6 @@ function Friends(props){
             }
         }
 
-
-
-
-
         Load_request();
         Load_List_friends();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,7 +78,7 @@ function Friends(props){
     
 
 
-
+    //function to search through avalible users.
     const search_function =async(e)=>{
         e.preventDefault();
 
@@ -99,6 +98,7 @@ function Friends(props){
         }
     }
 
+    //function to send Request to user.
     const sendRequest = async(e,phone)=>{
         e.preventDefault();
         try{
@@ -118,6 +118,7 @@ function Friends(props){
         }
     }
 
+    //function to accept friend request.
     const accept_Request = async(e, phone)=>{
         try{
             const response = await axios.post(
@@ -134,6 +135,7 @@ function Friends(props){
         }
     }
 
+    //funtion to load name of the user from user details.
     const load_Name = async(e,phone)=>{
         try{
             const response = await axios.post(
@@ -146,6 +148,21 @@ function Friends(props){
             console.log(response);
             setprof(response.data.user1[0]);
             setFlag(false);
+        }catch(error){
+            console.log(error);
+        }
+
+        //function to show wishlist.
+        try{
+            const response = await axios.post(
+                "http://localhost:3003/api/user/allproductsWishlist",
+                {
+                    phone_no : phone
+                }
+            )
+            setShowWishlist(response.data.arr2);
+            console.log(response);
+            setf(false);
         }catch(error){
             console.log(error);
         }
@@ -173,6 +190,7 @@ function Friends(props){
         }
     };
 
+
     return (
         <div className="container-fluid">
             <div className="col-xs-3 col-md-3 Left_div_friends">
@@ -185,9 +203,13 @@ function Friends(props){
                             {listOfFriends.map((friend)=>{
                                 return(
                                     <div className="friends_box">
-                                        <div className="friend-list-pic"></div>
-                                        <div className="info_tab" onClick={(e)=>load_Name(e,friend.phone_no)}>
-                                            <h6>{friend.name}</h6>
+                                        <div className="friend-list-pic" onClick={(e)=>load_Name(e,friend.phone_no)}>
+                                            <img 
+                                            src="" 
+                                            alt="friend" />
+                                        </div>
+                                        <div className="info_tab" >
+                                            <h6 onClick={(e)=>load_Name(e,friend.phone_no)}>{friend.name}</h6>
                                             <p>5 Mutual Friends</p>
                                         </div>
                                     </div>
@@ -206,13 +228,13 @@ function Friends(props){
                             {pendingRequest.map((req)=>{
                                 return(
                                     <div className="friends_box">
-                                        <div className="friend-list-pic"></div>
+                                        <div className="friend-list-pic">
+                                            <img 
+                                            src="" 
+                                            alt="friend" />
+                                        </div>
                                         <div className="info_tab">
-                                            <h6>
-                                                {/* <Link to="localhost:3003/profile/:id"> */}
-                                                {req.name}
-                                                {/* </Link> */}
-                                            </h6>
+                                            <h6>{req.name}</h6>
                                             <p onClick={(e)=>accept_Request(e,req.phone_no)}>
                                                 Accept Request
                                             </p>
@@ -286,251 +308,53 @@ function Friends(props){
                     </h4>
                 </div>
                 <div className="friend_wishlist">
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
-                    <div className="wishlist_card">
-                        <div className="card_left">
-                            <img
-                                className="prod_im"
-                                src={CompanyLogo}
-                                alt="product_image"
-                            />
-                        </div>
-                        <div className="card_right">
-                            <h5 className="card-title">Men Black JORDAN</h5>
-                            <h5 className="card-brand">ONE TAKE 2</h5>
-                            <h6
-                                className="card-cost"
-                                style={{
-                                    margin: "10px 0 0 0",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Rs. 8295
-                            </h6>
-                            <p
-                                style={{
-                                    color: "green",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                inclusive of all taxes
-                            </p>
-                            <ReactStars
-                                count={5}
-                                size={33}
-                                activeColor="#ffd700"
-                            />
-                        </div>
-                    </div>
+                    {fl ? (
+                        <>
+                            Loading.
+                        </>
+                    ):(
+                        <>
+                            {showwishlist.map((val)=>{
+                                return(
+                                    <div className="wishlist_card">
+                                        <div className="card_left">
+                                            <img
+                                                className="prod_im"
+                                                src={`./img/${val.img}`}
+                                                alt="product_image"
+                                            />
+                                        </div>
+                                        <div className="card_right">
+                                            <h5 className="card-title">{val.p_name}</h5>
+                                            <h5 className="card-brand">{val.p_brand}</h5>
+                                            <h6
+                                                className="card-cost"
+                                                style={{
+                                                    margin: "10px 0 0 0",
+                                                    fontSize: "1.5rem",
+                                                }}
+                                            >
+                                                {val.p_orig_price}
+                                            </h6>
+                                            <p
+                                                style={{
+                                                    color: "green",
+                                                    fontSize: "1.1rem",
+                                                }}
+                                            >
+                                                inclusive of all taxes
+                                            </p>
+                                            <ReactStars
+                                                count={5}
+                                                size={33}
+                                                activeColor="#ffd700"
+                                            />
+                                        </div>
+                                </div>
+                                )
+                            })}
+                        </>
+                    )}
                 </div>
                 <ChatBox flagChatbox={flagChatbox} toggleChatbox={toggleChatbox} roomId = {roomId} name={name}/>
             </div>

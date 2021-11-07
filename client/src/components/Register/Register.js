@@ -33,6 +33,7 @@ function Register(props){
     } = props;
     let history = useHistory();
 
+    //function to let user SignUp.
     const signUp = async(e) => {
         e.preventDefault();
 
