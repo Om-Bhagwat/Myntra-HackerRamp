@@ -15,6 +15,8 @@ function Product(){
     const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
 
+    
+
 
 
     useEffect(()=>{
@@ -35,11 +37,10 @@ function Product(){
             }
         }
 
- 
-
-
-
+        
         Load_Products();
+
+
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])

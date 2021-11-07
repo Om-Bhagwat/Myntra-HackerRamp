@@ -4,14 +4,7 @@ import axios from "axios";
 // css imports
 import "./Swipe.css";
 
-<<<<<<< HEAD
 const Slider = (props) => {
-	// const swipeRight = () => {
-	// 	document.getElementById("swipe-panel").
-	// }
-=======
-const Slider = () => {
->>>>>>> 11beee6ebc03b30729bd069a046024a57d1e4209
 
 	const animateSwipe = () => {
 		let pos = 100;
@@ -41,6 +34,51 @@ const Slider = () => {
 
 	const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
+
+	const [list,setList]=useState([]);
+    const [loadlist,setloadList]=useState(true);
+
+	const [productid,setproductId]=useState([]);
+
+	// functions for like and dislike
+
+	const Like =async(e)=>{
+		e.preventDefault();
+
+		try{
+			const response = await axios.post(
+				"http://localhost:3003/api/user/likeProduct",
+				{
+					p_id : productid,
+					
+				}
+			)
+			   console.log(response);
+
+		}catch(error){
+			console.log(error);
+		}
+	}
+
+	const Dislike =async(e)=>{
+		e.preventDefault();
+
+		try{
+			const response = await axios.post(
+				"http://localhost:3003/api/user/dislikeProduct",
+				{
+					p_id : productid,
+					
+				}
+			)
+			   console.log(response);
+
+		}catch(error){
+			console.log(error);
+		}
+	}
+
+
 	
     useEffect(()=>{
 
@@ -64,7 +102,32 @@ const Slider = () => {
 
 
 
-        Load_Products();
+      
+
+		Load_Products();
+
+        async function Load_list(){
+            try{
+                const response = await axios.get(
+                    "http://localhost:3003/api/user/showRandom"
+                    
+                     
+                )
+    
+                console.log(response.data.arr2);
+                setList(response.data.arr2);
+                setloadList(false);
+            }catch(error){
+                console.log(error);
+            }
+        }
+
+ 
+
+
+
+        Load_list();        
+
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
@@ -92,40 +155,8 @@ const Slider = () => {
 				</p>
 			</div>
 
-			{/* <div id="swipe-list">
-				<h4>TRENDING TODAY</h4>
-				<div className="rank-list">
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					<div className="rank-item">
-						<img src="./img/1636177446098puma.jpg" alt="Joota1" />
-						<h6>Some Joota Of Some Company and some more text to increase size</h6>
-					</div>
-					
-				</div>
-			</div> */}
+	
+
 
 			<div id="swipe-list">
 				<h4>TRENDING TODAY</h4>
