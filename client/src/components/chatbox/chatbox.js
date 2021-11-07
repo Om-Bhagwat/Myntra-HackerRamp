@@ -15,6 +15,10 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
     //hooks to store and display messages.
     const [message, setMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
+    const [pj,setpj] = useState("");
+
+
+    console.log(name);
     
     //hook to make a connection, send and receive message.
 	useEffect(() => {
@@ -23,6 +27,7 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
 	
 	useEffect(() => {
 		socket.emit("join_room", roomId);
+        setpj(localStorage.getItem("phone_number"));
 	}, []);
 
 	useEffect(()=>{
@@ -37,7 +42,7 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
         let messageContent = {
 			room: roomId,
 			content: {
-				author: name,
+				phone: localStorage.getItem("phone_number"),
 				message: message,
 				time:today.getHours()+':'+today.getMinutes(),
 			},
@@ -49,7 +54,7 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
         setMessage("");
 	};
 
-    //console.log(messageList);
+    console.log(messageList);
 
     return (
         <div id="chatbox" className="disable-sth">
@@ -66,14 +71,18 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
             <div className="chatbox-body">
                 {messageList.map((val,key)=>{
                     return(
-                        <div className={`${(val.author===name)?"sentM msg":"recievedM msg"}`}>
+                        <div>
                             {val.message}
                         </div>
                     )
                 })}
+
+                    {/* className={`${(val.phone===pj)?"sentM msg":"recievedM msg"}`} */}
+
                 {/* <div className="sentM msg">
                     Look bro ! I found a pair of shoes that you aaa a a a might
                     like !
+                    className={`${(val.phone===pj)?"sentM msg":"recievedM msg"}`}
                 </div>
                 <div className="recievedM msg">Ohh... Thats great !</div> */}
             </div>

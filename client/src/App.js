@@ -33,18 +33,25 @@ function App() {
   useEffect(()=>{
     const localToken = localStorage.getItem("token");
     const phoneToken = localStorage.getItem("phone_number");
+    // console.log(phoneToken);
     if(localToken){
       setToken(localToken);
       setPhone_Number(phoneToken);
     }
 
     //load user details
+  
+  
+  },[])
+  useEffect(()=>{
+    
     async function Load_name(){
+      console.log(localStorage.getItem("phone_number"))
       try{
           const response = await axios.post(
               "http://localhost:3003/api/user/getuser",
               {
-                  phone_no : phone_number
+                  phone_no : localStorage.getItem("phone_number")
               }
           )
           console.log(response.data);
@@ -52,9 +59,10 @@ function App() {
       }catch(error){
           console.log(error);
       }
-  }
-
-  Load_name();
+    }
+      Load_name();
+  
+  
   },[])
 
   //function to help user Logout.
