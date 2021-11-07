@@ -17,9 +17,12 @@ const Slider = () => {
 			} else
 			clearInterval(id);
 		}
+		// image 1 src = image 2 src 
 		img1.src = "./img/1636177068177white.jpg";
-		// img2.src = "./img/1636177068177white.jpg";
-		img2.style.left = "100%";
+		// image 2 src = new random one 
+		img2.src = "./img/1636177446098puma.jpg";
+		pos = 100;
+		img2.style.left = pos + '%';
 	}
 
 	return (
