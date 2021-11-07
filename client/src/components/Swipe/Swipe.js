@@ -2,17 +2,25 @@
 import "./Swipe.css";
 
 const Slider = () => {
-	// const swipeRight = () => {
-	// 	document.getElementById("swipe-panel").
-	// }
 
-	// document.querySelector('.box').addEventListener('click', function () {
-	// 	this.scroll({
-	// 		left: 0,
-	// 		top: 0,
-	// 		behavior: 'smooth'
-	// 	})
-	// });
+	const animateSwipe = () => {
+		let pos = 100;
+		let img1 = document.querySelector('.image1');
+		let img2 = document.querySelector('.image2');
+		let id = null;
+		clearInterval(id);
+		id = setInterval(frame, 1);
+		function frame() {
+			if(pos > 0) {
+				img2.style.left = pos+'%';
+				pos -= 2;
+			} else
+			clearInterval(id);
+		}
+		img1.src = "./img/1636177068177white.jpg";
+		// img2.src = "./img/1636177068177white.jpg";
+		img2.style.left = "100%";
+	}
 
 	return (
 		<div id="swipe-container">
@@ -22,12 +30,14 @@ const Slider = () => {
 					The title of the cloth that is appearing
 				</h3>
 				<div className="disliked"></div>
-				<div className="liked"></div>
+				<div className="liked" 
+					onClick={animateSwipe}
+				></div>
 				<img className="image1" 
 				src="./img/1636177446098puma.jpg"
 				alt="image1" />
 				<img className="image2" 
-				src="./img/1636177446098puma.jpg"
+				src="./img/1636177068177white.jpg"
 				alt="image2" />
 				<p className="use">
 					Tap on Right Half of image if you like it and on Left Half if you don't.
