@@ -71,11 +71,14 @@ const ChatBox = ({flagChatbox, toggleChatbox, roomId, name}) => {
             <div className="chatbox-body">
                 {messageList.map((val,key)=>{
                     return(
-                        <div className={`${(val.phone===pj)?"sentM msg":"recievedM msg"}`}>
+                        <div>
                             {val.message}
                         </div>
                     )
                 })}
+
+                    {/* className={`${(val.phone===pj)?"sentM msg":"recievedM msg"}`} */}
+
                 {/* <div className="sentM msg">
                     Look bro ! I found a pair of shoes that you aaa a a a might
                     like !
