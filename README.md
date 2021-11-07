@@ -1,8 +1,35 @@
 # Myntra Hacker-Ramp Project
 
-#### **Track**: Socialize and Gamify Track
+[TOC]
 
-**Tech Stack Used :-**
+This project for built for Myntra Hacker-Ramp Hackathon with two tracks in mind; namely, Socialize and Gamify Track. We mainly aim to increase the customer involvement, satisfaction and convenience increasing features.
+
+## Project Sub-Components
+
+1. **Swipe Feature** 
+
+   <p style="color:#ff905a"> (for like and dislike products selected daily randomly, and so that customer spend more time on myntra) </p>
+
+2. **Friends Feature** 
+
+   <p style="color:#ff905a"> (to have friends and send & accept friend requests) </p>
+
+3. **View Friend's Wishlist**
+
+4. **Search Friends**
+
+5. **Chat with friends**
+
+6. **View your own profile**
+
+7. **Top like products based on**
+
+8. **Authentication** 
+
+   <p style="color:#ff905a"> (login, register and logout system using JWT) </p>
+
+## Tech Stack Used :-
+
 **M**: MongoDB
 **E**: Express JS
 **R**: React JS
@@ -62,4 +89,8 @@ PORT=3003
 TOKEN_SECRET=thisisyou
 DB_URL=<here goes your MongoDB server address, local or online> 
 ```
+
+
+
+## Screenshots
 
