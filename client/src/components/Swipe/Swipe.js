@@ -7,6 +7,9 @@ import "./Swipe.css";
 const Slider = (props) => {
 
 	const useTip = "Tap on Right Half of image if you like it and on Left Half if you don't.";
+	let index = 2;
+	let p_idCurrent;
+	let p_idNext;
 
 	const animateSwipe = async (likeType) => {
 		let img0 = document.querySelector('.image0');
@@ -18,9 +21,12 @@ const Slider = (props) => {
 		if (likeType === "like") {
 			use.innerHTML = "L I K E D";
 			await rightToLeft();
+			Like();
+
 		} else {
 			use.innerHTML = "D I S L I K E D";
 			await leftToRight();
+			Dislike();
 		}
 		setTimeout(() => {
 			use.style.removeProperty("color");
@@ -30,13 +36,16 @@ const Slider = (props) => {
 
 		// set new random one 
 		let newSrc = "";
-		list.map((val) => {
-			newSrc = `./img/${val.img}`
-		})
-
-		setTimeout(() => {
-			animationCleanUp(img0, img1, img2, likeType, newSrc);
-		},300);
+		let listSize = list.length;
+		if (index >= listSize) {
+			newSrc = `./img/${list[index]}`;
+			index++;
+			setTimeout(() => {
+				animationCleanUp(img0, img1, img2, likeType, newSrc);
+			},300);
+			p_idCurrent = p_idNext;
+			p_idNext = list[index].p_id;
+		}
 	}
 
 	const rightToLeft = async () => {
@@ -99,32 +108,30 @@ const Slider = (props) => {
 
 	// functions for like and dislike
 
-	const Like = async(e)=>{
-		e.preventDefault();
-
+	const Like = async ()=>{
+		console.log(p_idCurrent);
 		try{
 			const response = await axios.post(
 				"http://localhost:3003/api/user/likeProduct",
 				{
-					p_id : productid,
+					p_id : p_idCurrent,
 					
 				}
-			)
-			console.log(response);
+				)
+				console.log(response);
 
 		}catch(error){
 			console.log(error);
 		}
 	}
 
-	const Dislike = async(e)=>{
-		e.preventDefault();
-
+	const Dislike = async ()=>{
+		console.log(p_idCurrent);
 		try{
 			const response = await axios.post(
 				"http://localhost:3003/api/user/dislikeProduct",
 				{
-					p_id : productid,
+					p_id : p_idCurrent,
 					
 				}
 			)
@@ -168,11 +175,15 @@ const Slider = (props) => {
         Load_Products();
     },[])
 	
+	const initProductID = () => {
+		p_idCurrent = list[0].p_id;
+		p_idNext = list[1].p_id;
+	}
 
 	return (
 		<div id="swipe-container">
 
-			<div id="swipe-panel">
+			<div id="swipe-panel" onFocus={initProductID}>
 				{loadlist ? (
 					<>
 						Loading.
@@ -195,11 +206,11 @@ const Slider = (props) => {
 								</>
 							)
 						})} */}
-						<img className="image0"  src="./img/1636177446098puma.jpg" 
+						<img className="image0"  src={`${'./img/'+list[1].img}`} 
 						alt="image0" />
-						<img className="image1"  src="./img/1636177446098puma.jpg" 
+						<img className="image1"  src={`${'./img/'+list[0].img}`} 
 						alt="image1" />
-						<img className="image2"  src="./img/1636177068177white.jpg" 
+						<img className="image2"  src={`${'./img/'+list[1].img}`} 
 						alt="image2" />
 						<p className="use">{useTip}</p>
 					</>
