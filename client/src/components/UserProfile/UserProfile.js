@@ -51,7 +51,7 @@ function UserProfile(props){
                     </div>
                     <div>
                         <h4><strong>Account</strong></h4>
-                        <h6>Om Bhagwat</h6>
+                        <h6>{overallProfile.name}</h6>
                     </div>
                 </div>
                 <div className="cont">
