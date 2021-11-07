@@ -26,6 +26,7 @@ const Slider = (props) => {
 		// set new random one 
 		// img2.src = "./img/1636177446098puma.jpg";
 
+
 		setTimeout(() => {
 			animationCleanUp(img0, img1, img2, likeType);
 		},300);
@@ -79,6 +80,7 @@ const Slider = (props) => {
 
 	const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
+	const [counter, setCounter] = useState(0);
 
 	const [list,setList]=useState([]);
     const [loadlist,setloadList]=useState(true);
@@ -138,17 +140,8 @@ const Slider = (props) => {
                 console.log(error);
             }
         }
-<<<<<<< HEAD
 
- 
-
-
-
-      
-
-		Load_Products();
-
-        async function Load_list(){
+		async function Load_list(){
             try{
                 const response = await axios.get(
                     "http://localhost:3003/api/user/showRandom"
@@ -168,13 +161,8 @@ const Slider = (props) => {
 
 
 
-        Load_list();        
-
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-=======
+        Load_list();
         Load_Products();
->>>>>>> 33590a87f68d9e63644ecaac16cb3e8f42a23551
     },[])
 	
 
@@ -182,30 +170,40 @@ const Slider = (props) => {
 		<div id="swipe-container">
 
 			<div id="swipe-panel">
-				<h3 className="swipe-title">
-					The title of the cloth that is appearing
-				</h3>
-				<div className="disliked"
-					onClick={() => animateSwipe("dislike")}
-				></div>
-				<div className="liked" 
-					onClick={() => animateSwipe("like")}
-				></div>
-				<img className="image0"  src="./img/1636177446098puma.jpg" 
-				alt="image0" />
-				<img className="image1"  src="./img/1636177446098puma.jpg" 
-				alt="image1" />
-				<img className="image2"  src="./img/1636177068177white.jpg" 
-				alt="image2" />
-				<p className="use">{useTip}</p>
+				{loadlist ? (
+					<>
+						Loading.
+					</>
+				):(
+					<>
+						<h3 className="swipe-title">
+							The title of the cloth that is appearing
+						</h3>
+						<div className="disliked"
+							onClick={() => animateSwipe("dislike")}
+						></div>
+						<div className="liked" 
+							onClick={() => animateSwipe("like")}
+						></div>
+						{/* {list.map((val)=>{
+							return(
+								<>
+									<img className={`image${counter}`} src={`./img/${val.img}`} alt="image0" />
+								</>
+							)
+						})} */}
+						<img className="image0"  src="./img/1636177446098puma.jpg" 
+						alt="image0" />
+						<img className="image1"  src="./img/1636177446098puma.jpg" 
+						alt="image1" />
+						<img className="image2"  src="./img/1636177068177white.jpg" 
+						alt="image2" />
+						<p className="use">{useTip}</p>
+					</>
+				)}
+
 			</div>
 
-<<<<<<< HEAD
-	
-
-
-=======
->>>>>>> 33590a87f68d9e63644ecaac16cb3e8f42a23551
 			<div id="swipe-list">
 				<h4>TRENDING TODAY</h4>
 				<div className="rank-list">

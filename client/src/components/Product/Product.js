@@ -51,6 +51,7 @@ function Product(props){
     const addToWishlist = async(e, idy) => {
         e.preventDefault();
         console.log(idy);
+        console.log(phone_number);
         try{
             const response = await axios.post(
                 "http://localhost:3003/api/user/addtowishlist",
@@ -96,7 +97,7 @@ function Product(props){
                                     </span>
                                 </p>
                                 <div className="btn-box">
-                                    <button className="card-btn wishlist-btn">
+                                    <button className="card-btn wishlist-btn" onClick={(e)=>addToWishlist(e,pr.p_id)}>
                                         <FaHeart className="cardbtn-icons"/>
                                         <span>
                                             Favourite
