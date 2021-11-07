@@ -34,7 +34,6 @@ const Slider = (props) => {
 			newSrc = `./img/${val.img}`
 		})
 
-
 		setTimeout(() => {
 			animationCleanUp(img0, img1, img2, likeType, newSrc);
 		},300);
@@ -75,6 +74,7 @@ const Slider = (props) => {
 			img2.src = newSrc;
 		} else {
 			// image 1 src = image 0 src 
+			
 			img1.src = img0.src.valueOf();
 			document.querySelector('.image0').style.removeProperty("left");
 			img0.src = newSrc;
