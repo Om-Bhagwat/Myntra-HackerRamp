@@ -13,6 +13,7 @@ import Register from "./components/Register/Register";
 import Product from "./components/Product/Product";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Friends from "./components/Friends/Friends";
+import Swipe from "./components/Swipe/Swipe";
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
                     <Route path = "/" exact>
                         <Navbar token = { token } onLogout = {onLogout} />
                         <Advertisement />
+                        <Swipe />
                         <Product />
                     </Route>
                     <Route path="/profile" exact>
