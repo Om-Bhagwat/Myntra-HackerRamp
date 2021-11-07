@@ -105,7 +105,7 @@ const Slider = (props) => {
 					
 				}
 			)
-			   console.log(response);
+			console.log(response);
 
 		}catch(error){
 			console.log(error);
@@ -150,8 +150,6 @@ const Slider = (props) => {
             try{
                 const response = await axios.get(
                     "http://localhost:3003/api/user/showRandom"
-                    
-                     
                 )
     
                 console.log(response.data.arr2);
@@ -161,11 +159,6 @@ const Slider = (props) => {
                 console.log(error);
             }
         }
-
- 
-
-
-
         Load_list();
         Load_Products();
     },[])
