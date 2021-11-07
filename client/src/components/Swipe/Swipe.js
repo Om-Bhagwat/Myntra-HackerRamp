@@ -29,11 +29,14 @@ const Slider = (props) => {
 		}, 700);
 
 		// set new random one 
-		// img2.src = "./img/1636177446098puma.jpg";
+		let newSrc = "";
+		list.map((val) => {
+			newSrc = `./img/${val.img}`
+		})
 
 
 		setTimeout(() => {
-			animationCleanUp(img0, img1, img2, likeType);
+			animationCleanUp(img0, img1, img2, likeType, newSrc);
 		},300);
 	}
 
@@ -64,15 +67,17 @@ const Slider = (props) => {
 		}
 	}
 
-	const animationCleanUp = (img0, img1, img2, likeType) => {
+	const animationCleanUp = (img0, img1, img2, likeType, newSrc) => {
 		if (likeType === "like") {
 			// image 1 src = image 2 src 
 			img1.src = img2.src.valueOf();
 			document.querySelector('.image2').style.removeProperty("left");
+			img2.src = newSrc;
 		} else {
 			// image 1 src = image 0 src 
 			img1.src = img0.src.valueOf();
 			document.querySelector('.image0').style.removeProperty("left");
+			img0.src = newSrc;
 		}
 		// console.log(img0, img1, img2);
 		// return {zero: img0, one: img1, two: img2}
@@ -94,7 +99,7 @@ const Slider = (props) => {
 
 	// functions for like and dislike
 
-	const Like =async(e)=>{
+	const Like = async(e)=>{
 		e.preventDefault();
 
 		try{
@@ -112,7 +117,7 @@ const Slider = (props) => {
 		}
 	}
 
-	const Dislike =async(e)=>{
+	const Dislike = async(e)=>{
 		e.preventDefault();
 
 		try{
@@ -123,7 +128,7 @@ const Slider = (props) => {
 					
 				}
 			)
-			   console.log(response);
+			console.log(response);
 
 		}catch(error){
 			console.log(error);
