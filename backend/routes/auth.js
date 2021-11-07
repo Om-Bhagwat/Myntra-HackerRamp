@@ -62,6 +62,8 @@ router.post('/upload2', upload.single('image'), async (req, res) => {
     user.img = req.file.filename
     const new_user = await user.save();
 
+    console.log(req.file.filename)
+
     res.status(201).send({ user })
 
     //   return response.status(201)
