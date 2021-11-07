@@ -31,6 +31,7 @@ const Slider = (props) => {
 		// set new random one 
 		// img2.src = "./img/1636177446098puma.jpg";
 
+
 		setTimeout(() => {
 			animationCleanUp(img0, img1, img2, likeType);
 		},300);
@@ -84,6 +85,52 @@ const Slider = (props) => {
 
 	const [product,setProduct]=useState([]);
     const [loadproduct,setloadProduct]=useState(true);
+	const [counter, setCounter] = useState(0);
+
+	const [list,setList]=useState([]);
+    const [loadlist,setloadList]=useState(true);
+
+	const [productid,setproductId]=useState([]);
+
+	// functions for like and dislike
+
+	const Like =async(e)=>{
+		e.preventDefault();
+
+		try{
+			const response = await axios.post(
+				"http://localhost:3003/api/user/likeProduct",
+				{
+					p_id : productid,
+					
+				}
+			)
+			   console.log(response);
+
+		}catch(error){
+			console.log(error);
+		}
+	}
+
+	const Dislike =async(e)=>{
+		e.preventDefault();
+
+		try{
+			const response = await axios.post(
+				"http://localhost:3003/api/user/dislikeProduct",
+				{
+					p_id : productid,
+					
+				}
+			)
+			   console.log(response);
+
+		}catch(error){
+			console.log(error);
+		}
+	}
+
+
 	
     useEffect(()=>{
         async function Load_Products(){
@@ -98,6 +145,28 @@ const Slider = (props) => {
                 console.log(error);
             }
         }
+
+		async function Load_list(){
+            try{
+                const response = await axios.get(
+                    "http://localhost:3003/api/user/showRandom"
+                    
+                     
+                )
+    
+                console.log(response.data.arr2);
+                setList(response.data.arr2);
+                setloadList(false);
+            }catch(error){
+                console.log(error);
+            }
+        }
+
+ 
+
+
+
+        Load_list();
         Load_Products();
     },[])
 	
@@ -106,22 +175,38 @@ const Slider = (props) => {
 		<div id="swipe-container">
 
 			<div id="swipe-panel">
-				<h3 className="swipe-title">
-					The title of the cloth that is appearing
-				</h3>
-				<div className="disliked"
-					onClick={() => animateSwipe("dislike")}
-				></div>
-				<div className="liked" 
-					onClick={() => animateSwipe("like")}
-				></div>
-				<img className="image0"  src="./img/1636177446098puma.jpg" 
-				alt="image0" />
-				<img className="image1"  src="./img/1636177446098puma.jpg" 
-				alt="image1" />
-				<img className="image2"  src="./img/1636177068177white.jpg" 
-				alt="image2" />
-				<p className="use">{useTip}</p>
+				{loadlist ? (
+					<>
+						Loading.
+					</>
+				):(
+					<>
+						<h3 className="swipe-title">
+							The title of the cloth that is appearing
+						</h3>
+						<div className="disliked"
+							onClick={() => animateSwipe("dislike")}
+						></div>
+						<div className="liked" 
+							onClick={() => animateSwipe("like")}
+						></div>
+						{/* {list.map((val)=>{
+							return(
+								<>
+									<img className={`image${counter}`} src={`./img/${val.img}`} alt="image0" />
+								</>
+							)
+						})} */}
+						<img className="image0"  src="./img/1636177446098puma.jpg" 
+						alt="image0" />
+						<img className="image1"  src="./img/1636177446098puma.jpg" 
+						alt="image1" />
+						<img className="image2"  src="./img/1636177068177white.jpg" 
+						alt="image2" />
+						<p className="use">{useTip}</p>
+					</>
+				)}
+
 			</div>
 
 			<div id="swipe-list">
