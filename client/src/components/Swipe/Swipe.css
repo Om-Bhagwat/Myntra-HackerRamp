@@ -20,14 +20,24 @@
     align-items: center;
     background-color: transparent;
     border-radius: 5px;
-	/* overflow-x: hidden; */
+	overflow-x: hidden;
+}
+
+#swipe-panel .image0 {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 #swipe-panel .image1 {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: -2;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -78,7 +88,7 @@
         rgba(0, 0, 0, 0.7)
     );
     font-family: Roboto;
-    color: rgb(255, 223, 162);
+    color: rgb(255, 207, 167);
     padding-top: 20px;
     line-height: 50px;
     word-spacing: 9px;
