@@ -4,18 +4,33 @@ import axios from "axios";
 // css imports
 import "./Swipe.css";
 
+<<<<<<< HEAD
 const Slider = (props) => {
 	// const swipeRight = () => {
 	// 	document.getElementById("swipe-panel").
 	// }
+=======
+const Slider = () => {
+>>>>>>> 11beee6ebc03b30729bd069a046024a57d1e4209
 
-	// document.querySelector('.box').addEventListener('click', function () {
-	// 	this.scroll({
-	// 		left: 0,
-	// 		top: 0,
-	// 		behavior: 'smooth'
-	// 	})
-	// });
+	const animateSwipe = () => {
+		let pos = 100;
+		let img1 = document.querySelector('.image1');
+		let img2 = document.querySelector('.image2');
+		let id = null;
+		clearInterval(id);
+		id = setInterval(frame, 1);
+		function frame() {
+			if(pos > 0) {
+				img2.style.left = pos+'%';
+				pos -= 2;
+			} else
+			clearInterval(id);
+		}
+		img1.src = "./img/1636177068177white.jpg";
+		// img2.src = "./img/1636177068177white.jpg";
+		img2.style.left = "100%";
+	}
 
 
 	const {
@@ -63,12 +78,14 @@ const Slider = (props) => {
 					The title of the cloth that is appearing
 				</h3>
 				<div className="disliked"></div>
-				<div className="liked"></div>
+				<div className="liked" 
+					onClick={animateSwipe}
+				></div>
 				<img className="image1" 
 				src="./img/1636177446098puma.jpg"
 				alt="image1" />
 				<img className="image2" 
-				src="./img/1636177446098puma.jpg"
+				src="./img/1636177068177white.jpg"
 				alt="image2" />
 				<p className="use">
 					Tap on Right Half of image if you like it and on Left Half if you don't.

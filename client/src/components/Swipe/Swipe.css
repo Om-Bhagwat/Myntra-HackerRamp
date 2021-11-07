@@ -1,19 +1,15 @@
 #swipe-container {
-    /* height: 500px; */
     min-height: 500px;
     width: calc(100vw - 60px);
     margin: 20px;
-    /* border: black solid 2px; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-	/* background-color: white; */
 }
 
 /* ! ---- Left Panel ---- ! */
 
 #swipe-panel {
-    /* border: green solid 2px; */
     width: 58%;
     min-width: 300px;
     height: 500px;
@@ -24,8 +20,7 @@
     align-items: center;
     background-color: transparent;
     border-radius: 5px;
-	overflow-x: hidden;
-	/* z-index: 2; */
+	/* overflow-x: hidden; */
 }
 
 #swipe-panel .image1 {
@@ -151,7 +146,6 @@
 .rank-list {
     height: 456px;
     width: 100%;
-    /* background-color: antiquewhite; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -161,7 +155,6 @@
 }
 
 .rank-item {
-    /* border: #ff3f6c solid 1px; */
     width: 95%;
     display: flex;
     flex-flow: row nowrap;
