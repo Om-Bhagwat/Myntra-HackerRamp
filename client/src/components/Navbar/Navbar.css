@@ -89,6 +89,7 @@ body {
 	align-items: center;
 	color: black;
 	font-size: 1.5rem;
+	cursor: pointer;
 }
 
 .navObj a p {

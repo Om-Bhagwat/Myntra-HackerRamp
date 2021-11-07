@@ -6,7 +6,7 @@ import "./UserProfile.css";
 function UserProfile(props){
 
     const {
-        phone_number,
+        phone_number
     } = props;
 
     const [overallProfile, setoverallProfile] = useState([]);

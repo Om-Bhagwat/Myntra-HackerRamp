@@ -83,6 +83,7 @@ const Slider = (props) => {
 			img2.src = newSrc;
 		} else {
 			// image 1 src = image 0 src 
+			
 			img1.src = img0.src.valueOf();
 			document.querySelector('.image0').style.removeProperty("left");
 			img0.src = newSrc;

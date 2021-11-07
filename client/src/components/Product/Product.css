@@ -38,6 +38,13 @@
     /* margin: 0s; */
 }
 
+.card-title {
+    cursor: pointer;
+}
+.card-text {
+    cursor: default;
+}
+
 .card-btn {
     background-color: transparent;
     padding: 4px;
