@@ -94,3 +94,32 @@ DB_URL=<here goes your MongoDB server address, local or online>
 
 ## Screenshots
 
+Login Screen
+
+![Login Screen](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/login.png?raw=true)
+
+Password Screen
+
+![Password Screen](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/password.png?raw=true)
+
+
+
+Friends Section
+
+![Friends Section](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/friend.png?raw=true)
+
+Home Screen 1
+
+![Homescreen1](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/front1.png?raw=true)
+
+Home Screen 2
+
+![HomeScreen2](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/front2.png?raw=true)
+
+Search
+
+![Search Screen](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/search.png?raw=true)
+
+Profile
+
+![Profile Page](https://github.com/Om-Bhagwat/Myntra-HackerRamp/blob/main/screenshots/profile.png?raw=true)
